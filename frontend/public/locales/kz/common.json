@@ -1,0 +1,80 @@
+{
+  "app": {
+    "name": "Жабдықтаушы-Тұтынушы Платформасы",
+    "tagline": "Бизнес өзара әрекеттесуін жеңілдетеміз"
+  },
+  "roles": {
+    "owner": "Иесі",
+    "admin": "Әкімші",
+    "sales": "Сату менеджері",
+    "consumer": "Тұтынушы"
+  },
+  "common": {
+    "save": "Сақтау",
+    "cancel": "Болдырмау",
+    "delete": "Жою",
+    "edit": "Өңдеу",
+    "create": "Жасау",
+    "search": "Іздеу",
+    "filter": "Сүзгі",
+    "export": "Экспорт",
+    "back": "Артқа",
+    "next": "Келесі",
+    "submit": "Жіберу",
+    "loading": "Жүктелуде...",
+    "noData": "Деректер жоқ",
+    "actions": "Әрекеттер",
+    "status": "Мәртебе",
+    "createdAt": "Жасалған",
+    "updatedAt": "Жаңартылған",
+    "archive": "Мұрағатқа",
+    "unarchive": "Мұрағаттан",
+    "archived": "Мұрағатта",
+    "active": "Белсенді",
+    "yes": "Иә",
+    "no": "Жоқ",
+    "confirm": "Растау",
+    "close": "Жабу"
+  },
+  "nav": {
+    "dashboard": "Басқару тақтасы",
+    "links": "Байланыстар",
+    "catalog": "Каталог",
+    "orders": "Тапсырыстар",
+    "chat": "Чат",
+    "complaints": "Шағымдар",
+    "incidents": "Оқиғалар",
+    "admin": "Әкімшілік",
+    "logout": "Шығу"
+  },
+  "auth": {
+    "signIn": "Кіру",
+    "signOut": "Шығу",
+    "selectRole": "Рөлді таңдаңыз",
+    "welcome": "Қош келдіңіз"
+  },
+  "dashboard": {
+    "welcome": "Қош келдіңіз, {{name}}",
+    "overview": "Шолу",
+    "pendingLinks": "Күтілетін байланыстар",
+    "recentOrders": "Соңғы тапсырыстар",
+    "openComplaints": "Ашық шағымдар",
+    "activeChats": "Белсенді чаттар",
+    "lowStock": "Төмен қалдық",
+    "pendingApprovals": "Мақұлдауды күтуде"
+  },
+  "errors": {
+    "generic": "Қате орын алды",
+    "notFound": "Табылмады",
+    "unauthorized": "Рұқсат жоқ",
+    "forbidden": "Тыйым салынған",
+    "validation": "Тексеру қатесі",
+    "network": "Желі қатесі"
+  },
+  "success": {
+    "saved": "Сәтті сақталды",
+    "created": "Сәтті жасалды",
+    "updated": "Сәтті жаңартылды",
+    "deleted": "Сәтті жойылды"
+  }
+}
