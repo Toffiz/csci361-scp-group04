@@ -9,19 +9,19 @@ interface RoleBadgeProps {
 
 const roleConfig = {
   [UserRole.OWNER]: {
-    label: 'Владелец',
+    label: 'Owner',
     variant: 'destructive' as const,
   },
   [UserRole.ADMIN]: {
-    label: 'Администратор',
+    label: 'Administrator',
     variant: 'secondary' as const,
   },
   [UserRole.SALES]: {
-    label: 'Менеджер',
+    label: 'Sales Manager',
     variant: 'outline' as const,
   },
   [UserRole.CONSUMER]: {
-    label: 'Потребитель',
+    label: 'Consumer',
     variant: 'outline' as const,
   },
 };
