@@ -5,11 +5,6 @@ import { Providers } from './providers';
 
 const inter = Inter({ subsets: ['latin', 'cyrillic'] });
 
-export const metadata = {
-  title: 'SCP - Supplier-Consumer Platform',
-  description: 'B2B platform for supplier-consumer collaboration',
-};
-
 export default function RootLayout({
   children,
 }: {
@@ -17,6 +12,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ru">
+      <head>
+        <title>SCP - Supplier-Consumer Platform</title>
+        <meta name="description" content="B2B platform for supplier-consumer collaboration" />
+      </head>
       <body className={inter.className}>
         <Providers>
           {children}

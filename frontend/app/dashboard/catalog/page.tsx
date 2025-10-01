@@ -20,9 +20,9 @@ const mockProducts: Product[] = [
     stock: 5000,
     moq: 100,
     supplierId: 'supplier-1',
-    supplierName: 'ТОО "Поставщик"',
-    category: 'Продукты питания',
     archived: false,
+    createdAt: new Date('2024-01-15').toISOString(),
+    updatedAt: new Date('2024-01-15').toISOString(),
   },
   {
     id: '2',
@@ -33,9 +33,9 @@ const mockProducts: Product[] = [
     stock: 3000,
     moq: 50,
     supplierId: 'supplier-1',
-    supplierName: 'ТОО "Поставщик"',
-    category: 'Продукты питания',
     archived: false,
+    createdAt: new Date('2024-01-15').toISOString(),
+    updatedAt: new Date('2024-01-15').toISOString(),
   },
   {
     id: '3',
@@ -46,9 +46,9 @@ const mockProducts: Product[] = [
     stock: 80,
     moq: 20,
     supplierId: 'supplier-1',
-    supplierName: 'ТОО "Поставщик"',
-    category: 'Продукты питания',
     archived: false,
+    createdAt: new Date('2024-01-15').toISOString(),
+    updatedAt: new Date('2024-01-15').toISOString(),
   },
   {
     id: '4',
@@ -59,9 +59,9 @@ const mockProducts: Product[] = [
     stock: 1200,
     moq: 100,
     supplierId: 'supplier-1',
-    supplierName: 'ТОО "Поставщик"',
-    category: 'Продукты питания',
     archived: false,
+    createdAt: new Date('2024-01-15').toISOString(),
+    updatedAt: new Date('2024-01-15').toISOString(),
   },
 ];
 
@@ -76,8 +76,7 @@ async function fetchCatalog(search: string): Promise<Product[]> {
     products = products.filter(
       (p) =>
         p.name.toLowerCase().includes(query) ||
-        p.description.toLowerCase().includes(query) ||
-        p.category.toLowerCase().includes(query)
+        (p.description && p.description.toLowerCase().includes(query))
     );
   }
   

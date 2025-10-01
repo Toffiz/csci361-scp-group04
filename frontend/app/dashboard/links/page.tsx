@@ -18,7 +18,6 @@ const mockLinks: Link[] = [
     consumerName: 'ТОО "Потребитель"',
     status: LinkStatus.PENDING,
     requestedAt: new Date('2024-03-15').toISOString(),
-    respondedAt: null,
     archived: false,
   },
   {
