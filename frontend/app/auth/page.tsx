@@ -1,7 +1,8 @@
+'use client';
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { redirect } from 'next/navigation';
-import { setSession } from '@/lib/session';
+import { useRouter } from 'next/navigation';
 import { UserRole, User } from '@/types';
 
 // Mock users for role selection
@@ -44,19 +45,16 @@ const mockUsers: Record<UserRole, User> = {
   },
 };
 
-async function handleRoleSelect(formData: FormData) {
-  'use server';
-  
-  const role = formData.get('role') as UserRole;
-  const user = mockUsers[role];
-  
-  if (user) {
-    await setSession(user);
-    redirect('/dashboard');
-  }
-}
-
 export default function AuthPage() {
+  const router = useRouter();
+
+  const handleRoleSelect = (role: UserRole) => {
+    const user = mockUsers[role];
+    if (user) {
+      localStorage.setItem('session', JSON.stringify(user));
+      router.push('/dashboard');
+    }
+  };
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100 p-4">
       <Card className="w-full max-w-md">
@@ -67,11 +65,9 @@ export default function AuthPage() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form action={handleRoleSelect} className="space-y-3">
+          <div className="space-y-3">
             <Button
-              type="submit"
-              name="role"
-              value={UserRole.OWNER}
+              onClick={() => handleRoleSelect(UserRole.OWNER)}
               variant="outline"
               className="w-full h-auto py-4 flex flex-col items-start"
             >
@@ -82,9 +78,7 @@ export default function AuthPage() {
             </Button>
             
             <Button
-              type="submit"
-              name="role"
-              value={UserRole.ADMIN}
+              onClick={() => handleRoleSelect(UserRole.ADMIN)}
               variant="outline"
               className="w-full h-auto py-4 flex flex-col items-start"
             >
@@ -95,9 +89,7 @@ export default function AuthPage() {
             </Button>
             
             <Button
-              type="submit"
-              name="role"
-              value={UserRole.SALES}
+              onClick={() => handleRoleSelect(UserRole.SALES)}
               variant="outline"
               className="w-full h-auto py-4 flex flex-col items-start"
             >
@@ -108,9 +100,7 @@ export default function AuthPage() {
             </Button>
             
             <Button
-              type="submit"
-              name="role"
-              value={UserRole.CONSUMER}
+              onClick={() => handleRoleSelect(UserRole.CONSUMER)}
               variant="outline"
               className="w-full h-auto py-4 flex flex-col items-start"
             >
@@ -119,7 +109,7 @@ export default function AuthPage() {
                 Доступ к каталогу и заказам
               </span>
             </Button>
-          </form>
+          </div>
         </CardContent>
       </Card>
     </div>

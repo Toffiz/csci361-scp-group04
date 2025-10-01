@@ -128,6 +128,19 @@ No environment variables required for local development. All data is mocked in-m
 
 ## Deployment
 
+### GitHub Pages (Automatic)
+
+1. Push to `main` branch
+2. GitHub Actions will automatically build and deploy
+3. Access at: `https://toffiz.github.io/csci361-scp-group04/`
+
+**First-time setup:**
+- Go to repo Settings → Pages
+- Source: GitHub Actions
+- The workflow will deploy automatically on push
+
+### Docker (Alternative)
+
 See root [`README.md`](../README.md) and [`Dockerfile`](../Dockerfile) for Docker deployment instructions.
 
 ## Notes

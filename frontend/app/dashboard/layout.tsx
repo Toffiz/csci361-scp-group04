@@ -1,22 +1,43 @@
-import { getSession } from '@/lib/session';
-import { redirect } from 'next/navigation';
+'use client';
+
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { TopNav } from '@/components/top-nav';
 import { SideNav } from '@/components/side-nav';
-import { cookies } from 'next/headers';
+import { User } from '@/types';
 
-export default async function DashboardLayout({
+export default function DashboardLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const user = await getSession();
-  
-  if (!user) {
-    redirect('/auth');
-  }
+  const router = useRouter();
+  const [user, setUser] = useState<User | null>(null);
+  const [locale, setLocale] = useState('ru');
 
-  const cookieStore = cookies();
-  const locale = cookieStore.get('locale')?.value || 'ru';
+  useEffect(() => {
+    // Get user from localStorage (client-side session)
+    const sessionData = localStorage.getItem('session');
+    if (!sessionData) {
+      router.push('/auth');
+      return;
+    }
+    
+    try {
+      const userData = JSON.parse(sessionData);
+      setUser(userData);
+    } catch {
+      router.push('/auth');
+    }
+
+    // Get locale
+    const savedLocale = localStorage.getItem('locale') || 'ru';
+    setLocale(savedLocale);
+  }, [router]);
+
+  if (!user) {
+    return <div className="min-h-screen flex items-center justify-center">Загрузка...</div>;
+  }
 
   return (
     <div className="min-h-screen flex flex-col">

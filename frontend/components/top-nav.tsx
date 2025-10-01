@@ -5,7 +5,6 @@ import { RoleBadge } from './role-badge';
 import { LocaleSwitcher } from './locale-switcher';
 import { Button } from './ui/button';
 import { LogOut } from 'lucide-react';
-import { clearSession } from '@/lib/session';
 import { useRouter } from 'next/navigation';
 
 interface TopNavProps {
@@ -16,10 +15,9 @@ interface TopNavProps {
 export function TopNav({ user, locale }: TopNavProps) {
   const router = useRouter();
 
-  const handleLogout = async () => {
-    await clearSession();
+  const handleLogout = () => {
+    localStorage.removeItem('session');
     router.push('/auth');
-    router.refresh();
   };
 
   return (
