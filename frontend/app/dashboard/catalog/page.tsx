@@ -13,10 +13,10 @@ import { useState } from 'react';
 const mockProducts: Product[] = [
   {
     id: '1',
-    name: 'Мука пшеничная высший сорт',
-    description: 'Качественная мука для выпечки хлеба и кондитерских изделий',
+    name: 'Premium Wheat Flour',
+    description: 'High-quality flour for bread and pastry baking',
     priceKZT: 180,
-    unit: 'кг',
+    unit: 'kg',
     stock: 5000,
     moq: 100,
     supplierId: 'supplier-1',
@@ -26,10 +26,10 @@ const mockProducts: Product[] = [
   },
   {
     id: '2',
-    name: 'Сахар-песок',
-    description: 'Сахар белый кристаллический',
+    name: 'Granulated Sugar',
+    description: 'White crystalline sugar',
     priceKZT: 320,
-    unit: 'кг',
+    unit: 'kg',
     stock: 3000,
     moq: 50,
     supplierId: 'supplier-1',
@@ -39,10 +39,10 @@ const mockProducts: Product[] = [
   },
   {
     id: '3',
-    name: 'Масло подсолнечное',
-    description: 'Рафинированное дезодорированное масло',
+    name: 'Sunflower Oil',
+    description: 'Refined deodorized oil',
     priceKZT: 850,
-    unit: 'л',
+    unit: 'L',
     stock: 80,
     moq: 20,
     supplierId: 'supplier-1',
@@ -52,10 +52,10 @@ const mockProducts: Product[] = [
   },
   {
     id: '4',
-    name: 'Рис круглозерный',
-    description: 'Премиум качество для плова',
+    name: 'Round Grain Rice',
+    description: 'Premium quality for pilaf',
     priceKZT: 450,
-    unit: 'кг',
+    unit: 'kg',
     stock: 1200,
     moq: 100,
     supplierId: 'supplier-1',
@@ -92,23 +92,23 @@ export default function CatalogPage() {
   });
 
   if (isLoading) {
-    return <div>Загрузка...</div>;
+    return <div>Loading...</div>;
   }
 
   return (
     <div className="space-y-8">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold">Каталог</h1>
+          <h1 className="text-3xl font-bold">Catalog</h1>
           <p className="text-muted-foreground mt-2">
-            Доступные товары от поставщиков
+            Available products from suppliers
           </p>
         </div>
       </div>
 
       <div className="max-w-md">
         <Input
-          placeholder="Поиск товаров..."
+          placeholder="Search products..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
@@ -121,7 +121,7 @@ export default function CatalogPage() {
               <div className="flex items-start justify-between">
                 <Package className="h-10 w-10 text-muted-foreground" />
                 {product.stock < 100 && (
-                  <Badge variant="destructive">Мало</Badge>
+                  <Badge variant="destructive">Low</Badge>
                 )}
               </div>
               <CardTitle className="text-xl mt-4">{product.name}</CardTitle>
@@ -135,12 +135,12 @@ export default function CatalogPage() {
                   {formatCurrencyKZT(product.priceKZT)}
                 </span>
                 <span className="text-muted-foreground text-sm">
-                  за {product.unit}
+                  per {product.unit}
                 </span>
               </div>
               <div className="text-sm text-muted-foreground space-y-1">
-                <div>В наличии: {product.stock} {product.unit}</div>
-                <div>Мин. заказ: {product.moq} {product.unit}</div>
+                <div>In stock: {product.stock} {product.unit}</div>
+                <div>Min order: {product.moq} {product.unit}</div>
               </div>
             </CardContent>
           </Card>
@@ -151,7 +151,7 @@ export default function CatalogPage() {
             <CardContent className="flex flex-col items-center justify-center py-12">
               <Package className="h-16 w-16 text-muted-foreground mb-4" />
               <p className="text-muted-foreground text-center">
-                {search ? 'Товары не найдены' : 'Каталог пуст'}
+                {search ? 'No products found' : 'Catalog is empty'}
               </p>
             </CardContent>
           </Card>

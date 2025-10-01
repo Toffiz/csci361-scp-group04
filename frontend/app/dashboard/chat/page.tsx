@@ -5,9 +5,9 @@ export default function ChatPage() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-3xl font-bold">Чат</h1>
+        <h1 className="text-3xl font-bold">Chat</h1>
         <p className="text-muted-foreground mt-2">
-          Общение с партнерами
+          Communication with partners
         </p>
       </div>
 
@@ -15,7 +15,7 @@ export default function ChatPage() {
         <CardContent className="flex flex-col items-center justify-center py-16">
           <MessageSquare className="h-16 w-16 text-muted-foreground mb-4" />
           <p className="text-muted-foreground text-center">
-            Нет активных диалогов
+            No active dialogs
           </p>
         </CardContent>
       </Card>

@@ -31,7 +31,7 @@ export default function DashboardLayout({
   }, [router]);
 
   if (!user) {
-    return <div className="min-h-screen flex items-center justify-center">Загрузка...</div>;
+    return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
   }
 
   return (

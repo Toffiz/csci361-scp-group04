@@ -5,37 +5,37 @@ export default function AdminPage() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-3xl font-bold">Администрирование</h1>
+        <h1 className="text-3xl font-bold">Administration</h1>
         <p className="text-muted-foreground mt-2">
-          Управление пользователями и настройками
+          User and settings management
         </p>
       </div>
 
       <div className="grid gap-6 md:grid-cols-2">
         <Card>
           <CardHeader>
-            <CardTitle>Пользователи и роли</CardTitle>
+            <CardTitle>Users and Roles</CardTitle>
             <CardDescription>
-              Управление доступом сотрудников
+              Employee access management
             </CardDescription>
           </CardHeader>
           <CardContent>
             <p className="text-sm text-muted-foreground">
-              Функция в разработке
+              Feature in development
             </p>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader>
-            <CardTitle>Настройки компании</CardTitle>
+            <CardTitle>Company Settings</CardTitle>
             <CardDescription>
-              Профиль и параметры
+              Profile and parameters
             </CardDescription>
           </CardHeader>
           <CardContent>
             <p className="text-sm text-muted-foreground">
-              Функция в разработке
+              Feature in development
             </p>
           </CardContent>
         </Card>

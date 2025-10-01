@@ -7,14 +7,14 @@ export default function IncidentsPage() {
     <div className="space-y-8">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold">Инциденты</h1>
+          <h1 className="text-3xl font-bold">Incidents</h1>
           <p className="text-muted-foreground mt-2">
-            Системные инциденты и события
+            System incidents and events
           </p>
         </div>
         <Button variant="outline">
           <Download className="h-4 w-4 mr-2" />
-          Экспорт CSV
+          Export CSV
         </Button>
       </div>
 
@@ -22,7 +22,7 @@ export default function IncidentsPage() {
         <CardContent className="flex flex-col items-center justify-center py-16">
           <AlertTriangle className="h-16 w-16 text-muted-foreground mb-4" />
           <p className="text-muted-foreground text-center">
-            Нет зарегистрированных инцидентов
+            No registered incidents
           </p>
         </CardContent>
       </Card>

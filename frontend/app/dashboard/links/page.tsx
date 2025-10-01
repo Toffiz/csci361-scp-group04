@@ -13,9 +13,9 @@ const mockLinks: Link[] = [
   {
     id: '1',
     supplierId: 'supplier-1',
-    supplierName: 'ТОО "Поставщик"',
+    supplierName: 'Supplier LLC',
     consumerId: 'consumer-1',
-    consumerName: 'ТОО "Потребитель"',
+    consumerName: 'Consumer Co',
     status: LinkStatus.PENDING,
     requestedAt: new Date('2024-03-15').toISOString(),
     archived: false,
@@ -23,9 +23,9 @@ const mockLinks: Link[] = [
   {
     id: '2',
     supplierId: 'supplier-1',
-    supplierName: 'ТОО "Поставщик"',
+    supplierName: 'Supplier LLC',
     consumerId: 'consumer-2',
-    consumerName: 'ИП "Магазин"',
+    consumerName: 'Store Inc',
     status: LinkStatus.APPROVED,
     requestedAt: new Date('2024-03-01').toISOString(),
     respondedAt: new Date('2024-03-02').toISOString(),
@@ -80,8 +80,8 @@ export default function LinksPage() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['links'] });
       toast({
-        title: 'Успешно',
-        description: 'Связь одобрена',
+        title: 'Success',
+        description: 'Link approved',
       });
     },
   });
@@ -91,14 +91,14 @@ export default function LinksPage() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['links'] });
       toast({
-        title: 'Отклонено',
-        description: 'Запрос на связь отклонен',
+        title: 'Declined',
+        description: 'Link request declined',
       });
     },
   });
 
   if (isLoading) {
-    return <div>Загрузка...</div>;
+    return <div>Loading...</div>;
   }
 
   const pendingLinks = links?.filter((l) => l.status === LinkStatus.PENDING) || [];
@@ -107,15 +107,15 @@ export default function LinksPage() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-3xl font-bold">Связи</h1>
+        <h1 className="text-3xl font-bold">Links</h1>
         <p className="text-muted-foreground mt-2">
-          Управление связями с потребителями
+          Manage consumer links
         </p>
       </div>
 
       <div>
         <h2 className="text-xl font-semibold mb-4">
-          Ожидают одобрения ({pendingLinks.length})
+          Pending Approval ({pendingLinks.length})
         </h2>
         <div className="grid gap-4 md:grid-cols-2">
           {pendingLinks.map((link) => (
@@ -123,7 +123,7 @@ export default function LinksPage() {
               <CardHeader>
                 <CardTitle className="text-lg">{link.consumerName}</CardTitle>
                 <CardDescription>
-                  Запрошено {new Date(link.requestedAt).toLocaleDateString('ru-RU')}
+                  Requested on {new Date(link.requestedAt).toLocaleDateString('en-US')}
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -134,7 +134,7 @@ export default function LinksPage() {
                     disabled={approveMutation.isPending}
                   >
                     <Check className="h-4 w-4 mr-2" />
-                    Одобрить
+                    Approve
                   </Button>
                   <Button
                     size="sm"
@@ -143,7 +143,7 @@ export default function LinksPage() {
                     disabled={declineMutation.isPending}
                   >
                     <X className="h-4 w-4 mr-2" />
-                    Отклонить
+                    Decline
                   </Button>
                 </div>
               </CardContent>
@@ -154,7 +154,7 @@ export default function LinksPage() {
             <Card className="md:col-span-2">
               <CardContent className="flex items-center justify-center py-8">
                 <p className="text-muted-foreground">
-                  Нет ожидающих запросов
+                  No pending requests
                 </p>
               </CardContent>
             </Card>
@@ -164,7 +164,7 @@ export default function LinksPage() {
 
       <div>
         <h2 className="text-xl font-semibold mb-4">
-          Активные связи ({activeLinks.length})
+          Active Links ({activeLinks.length})
         </h2>
         <div className="grid gap-4 md:grid-cols-3">
           {activeLinks.map((link) => (
@@ -172,10 +172,10 @@ export default function LinksPage() {
               <CardHeader>
                 <div className="flex items-start justify-between">
                   <CardTitle className="text-lg">{link.consumerName}</CardTitle>
-                  <Badge variant="default">Активна</Badge>
+                  <Badge variant="default">Active</Badge>
                 </div>
                 <CardDescription>
-                  С {new Date(link.respondedAt || link.requestedAt).toLocaleDateString('ru-RU')}
+                  Since {new Date(link.respondedAt || link.requestedAt).toLocaleDateString('en-US')}
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -185,7 +185,7 @@ export default function LinksPage() {
             <Card className="md:col-span-3">
               <CardContent className="flex items-center justify-center py-8">
                 <p className="text-muted-foreground">
-                  Нет активных связей
+                  No active links
                 </p>
               </CardContent>
             </Card>

@@ -6,21 +6,21 @@ import { UserRole } from '@/types';
 describe('RoleBadge', () => {
   it('renders owner role badge', () => {
     render(<RoleBadge role={UserRole.OWNER} />);
-    expect(screen.getByText('Владелец')).toBeInTheDocument();
+    expect(screen.getByText('Owner')).toBeInTheDocument();
   });
 
   it('renders admin role badge', () => {
     render(<RoleBadge role={UserRole.ADMIN} />);
-    expect(screen.getByText('Администратор')).toBeInTheDocument();
+    expect(screen.getByText('Administrator')).toBeInTheDocument();
   });
 
   it('renders sales role badge', () => {
     render(<RoleBadge role={UserRole.SALES} />);
-    expect(screen.getByText('Менеджер')).toBeInTheDocument();
+    expect(screen.getByText('Sales Manager')).toBeInTheDocument();
   });
 
   it('renders consumer role badge', () => {
     render(<RoleBadge role={UserRole.CONSUMER} />);
-    expect(screen.getByText('Потребитель')).toBeInTheDocument();
+    expect(screen.getByText('Consumer')).toBeInTheDocument();
   });
 });

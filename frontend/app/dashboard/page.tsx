@@ -16,13 +16,13 @@ export default function DashboardPage() {
   }, []);
 
   if (!user) {
-    return <div>Загрузка...</div>;
+    return <div>Loading...</div>;
   }
 
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-3xl font-bold">Добро пожаловать, {user.name}</h1>
+        <h1 className="text-3xl font-bold">Welcome, {user.name}</h1>
         <p className="text-muted-foreground mt-2">
           {user.companyName}
         </p>
@@ -33,14 +33,14 @@ export default function DashboardPage() {
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">
-                Активные связи
+                Active Links
               </CardTitle>
               <Link2 className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">1</div>
               <p className="text-xs text-muted-foreground">
-                Доступ к каталогу
+                Catalog access
               </p>
             </CardContent>
           </Card>
@@ -48,14 +48,14 @@ export default function DashboardPage() {
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">
-                Мои заказы
+                My Orders
               </CardTitle>
               <ShoppingCart className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">0</div>
               <p className="text-xs text-muted-foreground">
-                Активных заказов
+                Active orders
               </p>
             </CardContent>
           </Card>
@@ -63,14 +63,14 @@ export default function DashboardPage() {
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">
-                Сообщения
+                Messages
               </CardTitle>
               <MessageSquare className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">0</div>
               <p className="text-xs text-muted-foreground">
-                Непрочитанных
+                Unread
               </p>
             </CardContent>
           </Card>
@@ -82,14 +82,14 @@ export default function DashboardPage() {
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">
-                Ожидают одобрения
+                Pending Approval
               </CardTitle>
               <Link2 className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">1</div>
               <p className="text-xs text-muted-foreground">
-                Запросов на связь
+                Link requests
               </p>
             </CardContent>
           </Card>
@@ -97,14 +97,14 @@ export default function DashboardPage() {
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">
-                Товары
+                Products
               </CardTitle>
               <Package className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">4</div>
               <p className="text-xs text-muted-foreground">
-                В каталоге
+                In catalog
               </p>
             </CardContent>
           </Card>
@@ -112,14 +112,14 @@ export default function DashboardPage() {
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">
-                Заказы
+                Orders
               </CardTitle>
               <ShoppingCart className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">0</div>
               <p className="text-xs text-muted-foreground">
-                Требуют обработки
+                Need processing
               </p>
             </CardContent>
           </Card>
@@ -127,14 +127,14 @@ export default function DashboardPage() {
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">
-                Жалобы
+                Complaints
               </CardTitle>
               <AlertCircle className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">0</div>
               <p className="text-xs text-muted-foreground">
-                Открытых жалоб
+                Open complaints
               </p>
             </CardContent>
           </Card>
@@ -146,14 +146,14 @@ export default function DashboardPage() {
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">
-                Чаты
+                Chats
               </CardTitle>
               <MessageSquare className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">0</div>
               <p className="text-xs text-muted-foreground">
-                Активных диалогов
+                Active dialogs
               </p>
             </CardContent>
           </Card>
@@ -161,14 +161,14 @@ export default function DashboardPage() {
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">
-                Заказы
+                Orders
               </CardTitle>
               <ShoppingCart className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">0</div>
               <p className="text-xs text-muted-foreground">
-                На обработке
+                In processing
               </p>
             </CardContent>
           </Card>
@@ -176,14 +176,14 @@ export default function DashboardPage() {
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">
-                Жалобы
+                Complaints
               </CardTitle>
               <AlertCircle className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">0</div>
               <p className="text-xs text-muted-foreground">
-                Назначено мне
+                Assigned to me
               </p>
             </CardContent>
           </Card>
@@ -192,9 +192,9 @@ export default function DashboardPage() {
 
       <Card>
         <CardHeader>
-          <CardTitle>Быстрый старт</CardTitle>
+          <CardTitle>Quick Start</CardTitle>
           <CardDescription>
-            Основные функции платформы
+            Main platform features
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -202,13 +202,13 @@ export default function DashboardPage() {
             {user.role === UserRole.CONSUMER && (
               <>
                 <p className="text-sm text-muted-foreground">
-                  • Просмотрите <a href="/catalog" className="text-primary hover:underline">каталог товаров</a> связанных поставщиков
+                  • Browse the <a href="/dashboard/catalog" className="text-primary hover:underline">product catalog</a> of linked suppliers
                 </p>
                 <p className="text-sm text-muted-foreground">
-                  • Создавайте заказы и отслеживайте их статус в разделе <a href="/orders" className="text-primary hover:underline">Заказы</a>
+                  • Create orders and track their status in the <a href="/dashboard/orders" className="text-primary hover:underline">Orders</a> section
                 </p>
                 <p className="text-sm text-muted-foreground">
-                  • Общайтесь с менеджерами в <a href="/chat" className="text-primary hover:underline">Чате</a>
+                  • Communicate with managers in <a href="/dashboard/chat" className="text-primary hover:underline">Chat</a>
                 </p>
               </>
             )}
@@ -216,13 +216,13 @@ export default function DashboardPage() {
             {(user.role === UserRole.OWNER || user.role === UserRole.ADMIN) && (
               <>
                 <p className="text-sm text-muted-foreground">
-                  • Одобряйте запросы на связь в разделе <a href="/links" className="text-primary hover:underline">Связи</a>
+                  • Approve link requests in the <a href="/dashboard/links" className="text-primary hover:underline">Links</a> section
                 </p>
                 <p className="text-sm text-muted-foreground">
-                  • Управляйте товарами в <a href="/catalog" className="text-primary hover:underline">Каталоге</a>
+                  • Manage products in the <a href="/dashboard/catalog" className="text-primary hover:underline">Catalog</a>
                 </p>
                 <p className="text-sm text-muted-foreground">
-                  • Обрабатывайте <a href="/orders" className="text-primary hover:underline">Заказы</a> и <a href="/complaints" className="text-primary hover:underline">Жалобы</a>
+                  • Process <a href="/dashboard/orders" className="text-primary hover:underline">Orders</a> and <a href="/dashboard/complaints" className="text-primary hover:underline">Complaints</a>
                 </p>
               </>
             )}
@@ -230,13 +230,13 @@ export default function DashboardPage() {
             {user.role === UserRole.SALES && (
               <>
                 <p className="text-sm text-muted-foreground">
-                  • Обрабатывайте <a href="/orders" className="text-primary hover:underline">Заказы</a> от клиентов
+                  • Process customer <a href="/dashboard/orders" className="text-primary hover:underline">Orders</a>
                 </p>
                 <p className="text-sm text-muted-foreground">
-                  • Общайтесь с клиентами в <a href="/chat" className="text-primary hover:underline">Чате</a>
+                  • Communicate with customers in <a href="/dashboard/chat" className="text-primary hover:underline">Chat</a>
                 </p>
                 <p className="text-sm text-muted-foreground">
-                  • Решайте <a href="/complaints" className="text-primary hover:underline">Жалобы</a> клиентов
+                  • Resolve customer <a href="/dashboard/complaints" className="text-primary hover:underline">Complaints</a>
                 </p>
               </>
             )}
