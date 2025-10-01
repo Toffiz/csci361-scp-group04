@@ -1,80 +1,171 @@
-{
-  "app": {
-    "name": "Платформа Поставщик-Потребитель",
-    "tagline": "Упрощаем взаимодействие бизнеса"
-  },
-  "roles": {
-    "owner": "Владелец",
-    "admin": "Администратор",
-    "sales": "Менеджер по продажам",
-    "consumer": "Потребитель"
+{{
+
+  "app": {  "app": {
+
+    "title": "SCP Платформа",    "name": "Платформа Поставщик-Потребитель",
+
+    "description": "Платформа Поставщик-Потребитель"    "tagline": "Упрощаем взаимодействие бизнеса"
+
+  },  },
+
+  "nav": {  "roles": {
+
+    "dashboard": "Панель",    "owner": "Владелец",
+
+    "links": "Связи",    "admin": "Администратор",
+
+    "catalog": "Каталог",    "sales": "Менеджер по продажам",
+
+    "orders": "Заказы",    "consumer": "Потребитель"
+
+    "chat": "Чат",  },
+
+    "complaints": "Жалобы",  "common": {
+
+    "incidents": "Инциденты",    "save": "Сохранить",
+
+    "admin": "Админ"    "cancel": "Отмена",
+
+  },    "delete": "Удалить",
+
+  "auth": {    "edit": "Редактировать",
+
+    "title": "Добро пожаловать в SCP",    "create": "Создать",
+
+    "subtitle": "Войдите в свой аккаунт",    "search": "Поиск",
+
+    "email": "Email",    "filter": "Фильтр",
+
+    "password": "Пароль",    "export": "Экспорт",
+
+    "login": "Войти",    "back": "Назад",
+
+    "register": "Регистрация",    "next": "Далее",
+
+    "noAccount": "Нет аккаунта?",    "submit": "Отправить",
+
+    "haveAccount": "Уже есть аккаунт?",    "loading": "Загрузка...",
+
+    "registerTitle": "Создать аккаунт",    "noData": "Нет данных",
+
+    "registerSubtitle": "Зарегистрируйтесь для нового аккаунта",    "actions": "Действия",
+
+    "name": "Полное имя",    "status": "Статус",
+
+    "company": "Название компании",    "createdAt": "Создано",
+
+    "role": "Роль"    "updatedAt": "Обновлено",
+
+  },    "archive": "В архив",
+
+  "roles": {    "unarchive": "Из архива",
+
+    "owner": "Владелец",    "archived": "В архиве",
+
+    "admin": "Администратор",    "active": "Активно",
+
+    "sales": "Менеджер по продажам",    "yes": "Да",
+
+    "consumer": "Потребитель"    "no": "Нет",
+
+  },    "confirm": "Подтвердить",
+
+  "dashboard": {    "close": "Закрыть"
+
+    "welcome": "Добро пожаловать",  },
+
+    "quickStart": "Быстрый старт",  "nav": {
+
+    "features": "Основные функции платформы",    "dashboard": "Панель управления",
+
+    "activeLinks": "Активные связи",    "links": "Связи",
+
+    "catalogAccess": "Доступ к каталогу",    "catalog": "Каталог",
+
+    "myOrders": "Мои заказы",    "orders": "Заказы",
+
+    "activeOrders": "Активных заказов",    "chat": "Чат",
+
+    "messages": "Сообщения",    "complaints": "Жалобы",
+
+    "unread": "Непрочитанных",    "incidents": "Инциденты",
+
+    "pendingApproval": "Ожидают одобрения",    "admin": "Администрирование",
+
+    "linkRequests": "Запросов на связь",    "logout": "Выйти"
+
+    "products": "Товары",  },
+
+    "inCatalog": "В каталоге",  "auth": {
+
+    "orders": "Заказы",    "signIn": "Войти",
+
+    "needsProcessing": "Требуют обработки",    "signOut": "Выйти",
+
+    "complaints": "Жалобы",    "selectRole": "Выберите роль",
+
+    "openComplaints": "Открытых жалоб",    "welcome": "Добро пожаловать"
+
+    "chats": "Чаты",  },
+
+    "activeDialogs": "Активных диалогов",  "dashboard": {
+
+    "processing": "На обработке",    "welcome": "Добро пожаловать, {{name}}",
+
+    "assignedToMe": "Назначено мне"    "overview": "Обзор",
+
+  },    "pendingLinks": "Ожидающие связи",
+
+  "links": {    "recentOrders": "Последние заказы",
+
+    "title": "Связи",    "openComplaints": "Открытые жалобы",
+
+    "subtitle": "Управление связями с потребителями",    "activeChats": "Активные чаты",
+
+    "pending": "Ожидают одобрения",    "lowStock": "Низкий остаток",
+
+    "active": "Активные связи",    "pendingApprovals": "На утверждении"
+
+    "requested": "Запрошено",  },
+
+    "approve": "Одобрить",  "errors": {
+
+    "decline": "Отклонить",    "generic": "Произошла ошибка",
+
+    "noPending": "Нет ожидающих запросов",    "notFound": "Не найдено",
+
+    "noActive": "Нет активных связей",    "unauthorized": "Нет доступа",
+
+    "since": "С",    "forbidden": "Запрещено",
+
+    "activeStatus": "Активна"    "validation": "Ошибка валидации",
+
+  },    "network": "Ошибка сети"
+
+  "catalog": {  },
+
+    "title": "Каталог",  "success": {
+
+    "subtitle": "Доступные товары от поставщиков",    "saved": "Сохранено успешно",
+
+    "search": "Поиск товаров...",    "created": "Создано успешно",
+
+    "stock": "В наличии",    "updated": "Обновлено успешно",
+
+    "minOrder": "Мин. заказ",    "deleted": "Удалено успешно"
+
+    "lowStock": "Мало",  }
+
+    "loading": "Загрузка..."}
+
   },
   "common": {
+    "loading": "Загрузка...",
+    "logout": "Выйти",
     "save": "Сохранить",
-    "cancel": "Отмена",
+    "cancel": "Отменить",
     "delete": "Удалить",
     "edit": "Редактировать",
-    "create": "Создать",
-    "search": "Поиск",
-    "filter": "Фильтр",
-    "export": "Экспорт",
-    "back": "Назад",
-    "next": "Далее",
-    "submit": "Отправить",
-    "loading": "Загрузка...",
-    "noData": "Нет данных",
-    "actions": "Действия",
-    "status": "Статус",
-    "createdAt": "Создано",
-    "updatedAt": "Обновлено",
-    "archive": "В архив",
-    "unarchive": "Из архива",
-    "archived": "В архиве",
-    "active": "Активно",
-    "yes": "Да",
-    "no": "Нет",
-    "confirm": "Подтвердить",
-    "close": "Закрыть"
-  },
-  "nav": {
-    "dashboard": "Панель управления",
-    "links": "Связи",
-    "catalog": "Каталог",
-    "orders": "Заказы",
-    "chat": "Чат",
-    "complaints": "Жалобы",
-    "incidents": "Инциденты",
-    "admin": "Администрирование",
-    "logout": "Выйти"
-  },
-  "auth": {
-    "signIn": "Войти",
-    "signOut": "Выйти",
-    "selectRole": "Выберите роль",
-    "welcome": "Добро пожаловать"
-  },
-  "dashboard": {
-    "welcome": "Добро пожаловать, {{name}}",
-    "overview": "Обзор",
-    "pendingLinks": "Ожидающие связи",
-    "recentOrders": "Последние заказы",
-    "openComplaints": "Открытые жалобы",
-    "activeChats": "Активные чаты",
-    "lowStock": "Низкий остаток",
-    "pendingApprovals": "На утверждении"
-  },
-  "errors": {
-    "generic": "Произошла ошибка",
-    "notFound": "Не найдено",
-    "unauthorized": "Нет доступа",
-    "forbidden": "Запрещено",
-    "validation": "Ошибка валидации",
-    "network": "Ошибка сети"
-  },
-  "success": {
-    "saved": "Сохранено успешно",
-    "created": "Создано успешно",
-    "updated": "Обновлено успешно",
-    "deleted": "Удалено успешно"
+    "search": "Поиск"
   }
 }

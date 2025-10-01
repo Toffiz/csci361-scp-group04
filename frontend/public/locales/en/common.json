@@ -1,0 +1,91 @@
+{
+  "app": {
+    "title": "SCP Platform",
+    "description": "Supplier-Consumer Platform"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "links": "Links",
+    "catalog": "Catalog",
+    "orders": "Orders",
+    "chat": "Chat",
+    "complaints": "Complaints",
+    "incidents": "Incidents",
+    "admin": "Admin"
+  },
+  "auth": {
+    "title": "Welcome to SCP",
+    "subtitle": "Login to your account",
+    "email": "Email",
+    "password": "Password",
+    "login": "Login",
+    "register": "Register",
+    "noAccount": "Don't have an account?",
+    "haveAccount": "Already have an account?",
+    "registerTitle": "Create Account",
+    "registerSubtitle": "Sign up for a new account",
+    "name": "Full Name",
+    "company": "Company Name",
+    "role": "Role"
+  },
+  "roles": {
+    "owner": "Owner",
+    "admin": "Administrator",
+    "sales": "Sales Manager",
+    "consumer": "Consumer"
+  },
+  "dashboard": {
+    "welcome": "Welcome",
+    "quickStart": "Quick Start",
+    "features": "Main platform features",
+    "activeLinks": "Active Links",
+    "catalogAccess": "Catalog access",
+    "myOrders": "My Orders",
+    "activeOrders": "Active orders",
+    "messages": "Messages",
+    "unread": "Unread",
+    "pendingApproval": "Pending Approval",
+    "linkRequests": "Link requests",
+    "products": "Products",
+    "inCatalog": "In catalog",
+    "orders": "Orders",
+    "needsProcessing": "Needs processing",
+    "complaints": "Complaints",
+    "openComplaints": "Open complaints",
+    "chats": "Chats",
+    "activeDialogs": "Active dialogs",
+    "processing": "Processing",
+    "assignedToMe": "Assigned to me"
+  },
+  "links": {
+    "title": "Links",
+    "subtitle": "Manage consumer connections",
+    "pending": "Pending Approval",
+    "active": "Active Links",
+    "requested": "Requested",
+    "approve": "Approve",
+    "decline": "Decline",
+    "noPending": "No pending requests",
+    "noActive": "No active links",
+    "since": "Since",
+    "activeStatus": "Active"
+  },
+  "catalog": {
+    "title": "Catalog",
+    "subtitle": "Available products from suppliers",
+    "search": "Search products...",
+    "stock": "In stock",
+    "minOrder": "Min. order",
+    "lowStock": "Low",
+    "loading": "Loading..."
+  },
+  "common": {
+    "loading": "Loading...",
+    "logout": "Logout",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "search": "Search"
+  }
+}
