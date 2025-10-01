@@ -1,13 +1,22 @@
-import { getSession } from '@/lib/session';
+'use client';
+
+import { useState, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { UserRole } from '@/types';
+import { User, UserRole } from '@/types';
 import { Package, ShoppingCart, MessageSquare, AlertCircle, Link2 } from 'lucide-react';
 
-export default async function DashboardPage() {
-  const user = await getSession();
+export default function DashboardPage() {
+  const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    const session = localStorage.getItem('session');
+    if (session) {
+      setUser(JSON.parse(session));
+    }
+  }, []);
 
   if (!user) {
-    return null;
+    return <div>Загрузка...</div>;
   }
 
   return (
