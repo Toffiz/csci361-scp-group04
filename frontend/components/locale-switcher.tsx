@@ -1,4 +1,4 @@
-'use client';'use client';
+﻿'use client';'use client';
 
 
 
@@ -6,45 +6,55 @@ import { Button } from '@/components/ui/button';import { Button } from '@/compon
 
 import { Globe } from 'lucide-react';import { Globe } from 'lucide-react';
 
-import { useI18n } from '@/lib/i18n-context';import { useState } from 'react';
+import { useState, useEffect } from 'react';import { useState, useEffect } from 'react';
 
-import { localeNames } from '@/lib/i18n-client';
 
-export function LocaleSwitcher({ currentLocale }: { currentLocale: string }) {
 
-export function LocaleSwitcher() {  const [locale, setLocale] = useState(currentLocale);
+export function LocaleSwitcher() {export function LocaleSwitcher() {
 
-  const { locale, setLocale } = useI18n();
+  const [locale, setLocaleState] = useState('ru');  const [locale, setLocaleState] = useState('ru');
 
-  const toggleLocale = () => {
 
-  const toggleLocale = () => {    const newLocale = locale === 'ru' ? 'kz' : 'ru';
 
-    const newLocale = locale === 'ru' ? 'en' : 'ru';    setLocale(newLocale);
+  useEffect(() => {  useEffect(() => {
 
-    setLocale(newLocale);    localStorage.setItem('locale', newLocale);
+    const stored = localStorage.getItem('locale');    const stored = localStorage.getItem('locale');
 
-  };    // In a real app, this would trigger a re-render with new translations
+    if (stored) {    if (stored) {
 
-  };
+      setLocaleState(stored);      setLocaleState(stored);
 
-  return (
+    }    }
 
-    <Button variant="ghost" size="sm" onClick={toggleLocale} className="gap-2">  return (
+  }, []);  }, []);
 
-      <Globe className="h-4 w-4" />    <Button
 
-      {localeNames[locale]}      variant="ghost"
 
-    </Button>      size="sm"
+  const toggleLocale = () => {  const toggleLocale = () => {
 
-  );      onClick={toggleLocale}
+    const newLocale = locale === 'ru' ? 'en' : 'ru';    const newLocale = locale === 'ru' ? 'en' : 'ru';
 
-}      className="gap-2"
+    setLocaleState(newLocale);    setLocaleState(newLocale);
 
-    >
-      <Globe className="h-4 w-4" />
-      {locale === 'ru' ? 'ҚАЗ' : 'РУС'}
-    </Button>
-  );
-}
+    localStorage.setItem('locale', newLocale);    localStorage.setItem('locale', newLocale);
+
+    window.location.reload();    window.location.reload();
+
+  };  };
+
+
+
+  return (  return (
+
+    <Button variant="ghost" size="sm" onClick={toggleLocale} className="gap-2">    <Button variant="ghost" size="sm" onClick={toggleLocale} className="gap-2">
+
+      <Globe className="h-4 w-4" />      <Globe className="h-4 w-4" />
+
+      {locale === 'ru' ? 'Русский' : 'English'}      {locale === 'ru' ? 'Русский' : 'English'}
+
+    </Button>    </Button>
+
+  );  );
+
+}}
+

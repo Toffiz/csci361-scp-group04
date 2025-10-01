@@ -13,7 +13,6 @@ export default function DashboardLayout({
 }) {
   const router = useRouter();
   const [user, setUser] = useState<User | null>(null);
-  const [locale, setLocale] = useState('ru');
 
   useEffect(() => {
     // Get user from localStorage (client-side session)
@@ -29,10 +28,6 @@ export default function DashboardLayout({
     } catch {
       router.push('/auth');
     }
-
-    // Get locale
-    const savedLocale = localStorage.getItem('locale') || 'ru';
-    setLocale(savedLocale);
   }, [router]);
 
   if (!user) {
@@ -41,7 +36,7 @@ export default function DashboardLayout({
 
   return (
     <div className="min-h-screen flex flex-col">
-      <TopNav user={user} locale={locale} />
+      <TopNav user={user} />
       <div className="flex flex-1">
         <SideNav role={user.role} />
         <main className="flex-1 p-8 bg-slate-50">

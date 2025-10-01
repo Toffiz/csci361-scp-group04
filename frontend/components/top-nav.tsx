@@ -9,10 +9,9 @@ import { useRouter } from 'next/navigation';
 
 interface TopNavProps {
   user: User;
-  locale: string;
 }
 
-export function TopNav({ user, locale }: TopNavProps) {
+export function TopNav({ user }: TopNavProps) {
   const router = useRouter();
 
   const handleLogout = () => {
@@ -36,7 +35,7 @@ export function TopNav({ user, locale }: TopNavProps) {
             </div>
           </div>
           
-          <LocaleSwitcher currentLocale={locale} />
+          <LocaleSwitcher />
           
           <Button variant="ghost" size="icon" onClick={handleLogout}>
             <LogOut className="h-5 w-5" />
