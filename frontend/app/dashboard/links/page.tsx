@@ -1,27 +1,70 @@
 'use client';
 
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { Link, LinkStatus, ApiResponse } from '@/types';
+import { Link, LinkStatus } from '@/types';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Check, X } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
 
+// Mock data for static export
+const mockLinks: Link[] = [
+  {
+    id: '1',
+    supplierId: 'supplier-1',
+    supplierName: 'ТОО "Поставщик"',
+    consumerId: 'consumer-1',
+    consumerName: 'ТОО "Потребитель"',
+    status: LinkStatus.PENDING,
+    requestedAt: new Date('2024-03-15').toISOString(),
+    respondedAt: null,
+    archived: false,
+  },
+  {
+    id: '2',
+    supplierId: 'supplier-1',
+    supplierName: 'ТОО "Поставщик"',
+    consumerId: 'consumer-2',
+    consumerName: 'ИП "Магазин"',
+    status: LinkStatus.APPROVED,
+    requestedAt: new Date('2024-03-01').toISOString(),
+    respondedAt: new Date('2024-03-02').toISOString(),
+    archived: false,
+  },
+];
+
 async function fetchLinks(): Promise<Link[]> {
-  const res = await fetch('/api/links');
-  const data: ApiResponse<Link[]> = await res.json();
-  return data.data;
+  // Simulate API delay
+  await new Promise((resolve) => setTimeout(resolve, 300));
+  const stored = localStorage.getItem('links');
+  return stored ? JSON.parse(stored) : mockLinks;
 }
 
 async function approveLink(id: string) {
-  const res = await fetch(`/api/links/${id}/approve`, { method: 'POST' });
-  return res.json();
+  await new Promise((resolve) => setTimeout(resolve, 300));
+  const stored = localStorage.getItem('links');
+  const links = stored ? JSON.parse(stored) : mockLinks;
+  const updated = links.map((link: Link) =>
+    link.id === id
+      ? { ...link, status: LinkStatus.APPROVED, respondedAt: new Date().toISOString() }
+      : link
+  );
+  localStorage.setItem('links', JSON.stringify(updated));
+  return { success: true };
 }
 
 async function declineLink(id: string) {
-  const res = await fetch(`/api/links/${id}/decline`, { method: 'POST' });
-  return res.json();
+  await new Promise((resolve) => setTimeout(resolve, 300));
+  const stored = localStorage.getItem('links');
+  const links = stored ? JSON.parse(stored) : mockLinks;
+  const updated = links.map((link: Link) =>
+    link.id === id
+      ? { ...link, status: LinkStatus.DECLINED, respondedAt: new Date().toISOString() }
+      : link
+  );
+  localStorage.setItem('links', JSON.stringify(updated));
+  return { success: true };
 }
 
 export default function LinksPage() {

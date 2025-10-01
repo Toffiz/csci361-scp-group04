@@ -1,7 +1,7 @@
 'use client';
 
 import { useQuery } from '@tanstack/react-query';
-import { Product, ApiResponse } from '@/types';
+import { Product } from '@/types';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
@@ -9,14 +9,79 @@ import { formatCurrencyKZT } from '@/lib/currency';
 import { Package } from 'lucide-react';
 import { useState } from 'react';
 
+// Mock data for static export
+const mockProducts: Product[] = [
+  {
+    id: '1',
+    name: 'Мука пшеничная высший сорт',
+    description: 'Качественная мука для выпечки хлеба и кондитерских изделий',
+    priceKZT: 180,
+    unit: 'кг',
+    stock: 5000,
+    moq: 100,
+    supplierId: 'supplier-1',
+    supplierName: 'ТОО "Поставщик"',
+    category: 'Продукты питания',
+    archived: false,
+  },
+  {
+    id: '2',
+    name: 'Сахар-песок',
+    description: 'Сахар белый кристаллический',
+    priceKZT: 320,
+    unit: 'кг',
+    stock: 3000,
+    moq: 50,
+    supplierId: 'supplier-1',
+    supplierName: 'ТОО "Поставщик"',
+    category: 'Продукты питания',
+    archived: false,
+  },
+  {
+    id: '3',
+    name: 'Масло подсолнечное',
+    description: 'Рафинированное дезодорированное масло',
+    priceKZT: 850,
+    unit: 'л',
+    stock: 80,
+    moq: 20,
+    supplierId: 'supplier-1',
+    supplierName: 'ТОО "Поставщик"',
+    category: 'Продукты питания',
+    archived: false,
+  },
+  {
+    id: '4',
+    name: 'Рис круглозерный',
+    description: 'Премиум качество для плова',
+    priceKZT: 450,
+    unit: 'кг',
+    stock: 1200,
+    moq: 100,
+    supplierId: 'supplier-1',
+    supplierName: 'ТОО "Поставщик"',
+    category: 'Продукты питания',
+    archived: false,
+  },
+];
+
 async function fetchCatalog(search: string): Promise<Product[]> {
-  const params = new URLSearchParams();
-  if (search) params.append('search', search);
-  params.append('linked', 'true');
+  // Simulate API delay
+  await new Promise((resolve) => setTimeout(resolve, 300));
   
-  const res = await fetch(`/api/catalog?${params.toString()}`);
-  const data: ApiResponse<Product[]> = await res.json();
-  return data.data;
+  let products = mockProducts;
+  
+  if (search) {
+    const query = search.toLowerCase();
+    products = products.filter(
+      (p) =>
+        p.name.toLowerCase().includes(query) ||
+        p.description.toLowerCase().includes(query) ||
+        p.category.toLowerCase().includes(query)
+    );
+  }
+  
+  return products;
 }
 
 export default function CatalogPage() {
