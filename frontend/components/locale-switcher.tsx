@@ -5,7 +5,7 @@ import { Globe } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 export function LocaleSwitcher() {
-  const [locale, setLocaleState] = useState('ru');
+  const [locale, setLocaleState] = useState('en');
 
   useEffect(() => {
     const stored = localStorage.getItem('locale');

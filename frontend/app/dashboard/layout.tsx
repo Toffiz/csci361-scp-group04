@@ -18,7 +18,7 @@ export default function DashboardLayout({
     // Get user from localStorage (client-side session)
     const sessionData = localStorage.getItem('session');
     if (!sessionData) {
-      router.push('/auth');
+      router.push('/auth/login');
       return;
     }
     
@@ -26,7 +26,7 @@ export default function DashboardLayout({
       const userData = JSON.parse(sessionData);
       setUser(userData);
     } catch {
-      router.push('/auth');
+      router.push('/auth/login');
     }
   }, [router]);
 
