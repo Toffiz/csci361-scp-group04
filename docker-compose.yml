@@ -1,12 +1,55 @@
 version: '3.8'
 
 services:
-  frontend:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    ports:
-      - "3000:80"
+  db:
+    image: postgres:15-alpine
+    container_name: scp-postgres
     restart: unless-stopped
     environment:
+      POSTGRES_DB: scp_platform
+      POSTGRES_USER: scpuser
+      POSTGRES_PASSWORD: scppassword
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U scpuser -d scp_platform']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: scp-backend
+    ports:
+      - '5000:5000'
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - PORT=5000
+      - ENVIRONMENT=production
+      - DATABASE_URL=postgres://scpuser:scppassword@db:5432/scp_platform?sslmode=disable
+      - JWT_SECRET=${JWT_SECRET:-change-this-secret-in-production}
+      - FRONTEND_URL=http://localhost:3000
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: scp-frontend
+    ports:
+      - '3000:80'
+    restart: unless-stopped
+    depends_on:
+      - backend
+    environment:
       - NODE_ENV=production
+      - NEXT_PUBLIC_API_URL=http://localhost:5000
+
+volumes:
+  postgres_data:
