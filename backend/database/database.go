@@ -23,8 +23,8 @@ func Migrate(db *gorm.DB) {
 	log.Println("Running database migrations...")
 
 	err := db.AutoMigrate(
-		&models.User{},
 		&models.Supplier{},
+		&models.User{},
 		&models.Consumer{},
 		&models.ConsumerSupplierLink{},
 		&models.Category{},

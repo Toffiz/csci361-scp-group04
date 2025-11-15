@@ -17,19 +17,20 @@ const (
 
 // User represents the base user model.
 type User struct {
-	ID        uint           `json:"id" gorm:"primaryKey"`
-	UUID      string         `json:"uuid" gorm:"uniqueIndex;not null"`
-	Email     string         `json:"email" gorm:"uniqueIndex;not null"`
-	Password  string         `json:"-" gorm:"not null"`
-	Role      string         `json:"role" gorm:"not null"`
-	FirstName string         `json:"first_name"`
-	LastName  string         `json:"last_name"`
-	Phone     string         `json:"phone"`
-	Avatar    string         `json:"avatar"`
-	IsActive  bool           `json:"is_active" gorm:"default:true"`
-	CreatedAt time.Time      `json:"created_at"`
-	UpdatedAt time.Time      `json:"updated_at"`
-	DeletedAt gorm.DeletedAt `json:"-" gorm:"index"`
+	ID         uint           `json:"id" gorm:"primaryKey"`
+	UUID       string         `json:"uuid" gorm:"uniqueIndex;not null"`
+	Email      string         `json:"email" gorm:"uniqueIndex;not null"`
+	Password   string         `json:"-" gorm:"not null"`
+	Role       string         `json:"role" gorm:"not null"`
+	SupplierID *uint          `json:"supplier_id"` // Foreign key for supplier employees (owner, admin, sales)
+	FirstName  string         `json:"first_name"`
+	LastName   string         `json:"last_name"`
+	Phone      string         `json:"phone"`
+	Avatar     string         `json:"avatar"`
+	IsActive   bool           `json:"is_active" gorm:"default:true"`
+	CreatedAt  time.Time      `json:"created_at"`
+	UpdatedAt  time.Time      `json:"updated_at"`
+	DeletedAt  gorm.DeletedAt `json:"-" gorm:"index"`
 }
 
 func (u *User) BeforeCreate(tx *gorm.DB) error {
