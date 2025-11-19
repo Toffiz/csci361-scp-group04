@@ -197,7 +197,7 @@ export default function DashboardPage() {
             <CardContent>
               <div className="text-2xl font-bold">{stats.totalOrders}</div>
               <p className="text-xs text-muted-foreground">
-                Total orders
+                {t('dashboard.totalOrders')}
               </p>
             </CardContent>
           </Card>
@@ -205,14 +205,14 @@ export default function DashboardPage() {
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">
-                Complaints
+                {t('dashboard.complaints')}
               </CardTitle>
               <AlertCircle className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{stats.openComplaints}</div>
               <p className="text-xs text-muted-foreground">
-                Open issues
+                {t('dashboard.openIssues')}
               </p>
             </CardContent>
           </Card>
@@ -224,14 +224,14 @@ export default function DashboardPage() {
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">
-                Chats
+                {t('dashboard.chats')}
               </CardTitle>
               <MessageSquare className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">0</div>
               <p className="text-xs text-muted-foreground">
-                Active dialogs
+                {t('dashboard.activeDialogs')}
               </p>
             </CardContent>
           </Card>
@@ -239,14 +239,14 @@ export default function DashboardPage() {
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">
-                Orders
+                {t('dashboard.orders')}
               </CardTitle>
               <ShoppingCart className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">0</div>
               <p className="text-xs text-muted-foreground">
-                In processing
+                {t('dashboard.processing')}
               </p>
             </CardContent>
           </Card>
@@ -254,14 +254,14 @@ export default function DashboardPage() {
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">
-                Complaints
+                {t('dashboard.complaints')}
               </CardTitle>
               <AlertCircle className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">0</div>
               <p className="text-xs text-muted-foreground">
-                Assigned to me
+                {t('dashboard.assignedToMe')}
               </p>
             </CardContent>
           </Card>
@@ -270,9 +270,9 @@ export default function DashboardPage() {
 
       <Card>
         <CardHeader>
-          <CardTitle>Quick Start</CardTitle>
+          <CardTitle>{t('dashboard.quickStart')}</CardTitle>
           <CardDescription>
-            Main platform features
+            {t('dashboard.features')}
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -280,13 +280,13 @@ export default function DashboardPage() {
             {user.role === UserRole.CONSUMER && (
               <>
                 <p className="text-sm text-muted-foreground">
-                  • Browse the <a href="/dashboard/catalog" className="text-primary hover:underline">product catalog</a> of linked suppliers
+                  • {t('dashboard.quickStartConsumer1')}
                 </p>
                 <p className="text-sm text-muted-foreground">
-                  • Create orders and track their status in the <a href="/dashboard/orders" className="text-primary hover:underline">Orders</a> section
+                  • {t('dashboard.quickStartConsumer2')}
                 </p>
                 <p className="text-sm text-muted-foreground">
-                  • Communicate with managers in <a href="/dashboard/chat" className="text-primary hover:underline">Chat</a>
+                  • {t('dashboard.quickStartConsumer3')}
                 </p>
               </>
             )}
@@ -294,13 +294,13 @@ export default function DashboardPage() {
             {(user.role === UserRole.OWNER || user.role === UserRole.ADMIN) && (
               <>
                 <p className="text-sm text-muted-foreground">
-                  • Approve link requests in the <a href="/dashboard/links" className="text-primary hover:underline">Links</a> section
+                  • {t('dashboard.quickStartSupplier1')}
                 </p>
                 <p className="text-sm text-muted-foreground">
-                  • Manage products in the <a href="/dashboard/catalog" className="text-primary hover:underline">Catalog</a>
+                  • {t('dashboard.quickStartSupplier2')}
                 </p>
                 <p className="text-sm text-muted-foreground">
-                  • Process <a href="/dashboard/orders" className="text-primary hover:underline">Orders</a> and <a href="/dashboard/complaints" className="text-primary hover:underline">Complaints</a>
+                  • {t('dashboard.quickStartSupplier3')}
                 </p>
               </>
             )}
@@ -308,13 +308,13 @@ export default function DashboardPage() {
             {user.role === UserRole.SALES && (
               <>
                 <p className="text-sm text-muted-foreground">
-                  • Process customer <a href="/dashboard/orders" className="text-primary hover:underline">Orders</a>
+                  • {t('dashboard.quickStartSales1')}
                 </p>
                 <p className="text-sm text-muted-foreground">
-                  • Communicate with customers in <a href="/dashboard/chat" className="text-primary hover:underline">Chat</a>
+                  • {t('dashboard.quickStartSales2')}
                 </p>
                 <p className="text-sm text-muted-foreground">
-                  • Resolve customer <a href="/dashboard/complaints" className="text-primary hover:underline">Complaints</a>
+                  • {t('dashboard.quickStartSales3')}
                 </p>
               </>
             )}

@@ -55,7 +55,18 @@
     "chats": "Чаты",
     "activeDialogs": "Активных диалогов",
     "processing": "На обработке",
-    "assignedToMe": "Назначено мне"
+    "assignedToMe": "Назначено мне",
+    "totalOrders": "Всего заказов",
+    "openIssues": "Открытых проблем",
+    "quickStartConsumer1": "Просматривайте каталог товаров связанных поставщиков",
+    "quickStartConsumer2": "Создавайте заказы и отслеживайте их статус в разделе Заказы",
+    "quickStartConsumer3": "Общайтесь с менеджерами в Чате",
+    "quickStartSupplier1": "Одобряйте запросы на связь в разделе Связи",
+    "quickStartSupplier2": "Управляйте товарами в Каталоге",
+    "quickStartSupplier3": "Обрабатывайте Заказы и Жалобы",
+    "quickStartSales1": "Обрабатывайте Заказы клиентов",
+    "quickStartSales2": "Общайтесь с клиентами в Чате",
+    "quickStartSales3": "Решайте Жалобы клиентов"
   },
   "links": {
     "title": "Связи",

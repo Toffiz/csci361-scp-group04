@@ -725,7 +725,7 @@ export default function CatalogPage() {
         <div className="relative">
           <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
           <Input
-            placeholder="Search products..."
+            placeholder={t('catalog.search')}
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             className="pl-10"
@@ -739,7 +739,7 @@ export default function CatalogPage() {
               onChange={(e) => setSupplier(e.target.value)}
               className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
             >
-              <option value="">All Suppliers</option>
+              <option value="">{t('catalog.allSuppliers')}</option>
               {mockSuppliers.map((s) => (
                 <option key={s.id} value={s.id}>
                   {s.name}
@@ -757,7 +757,7 @@ export default function CatalogPage() {
               setSupplier('');
             }}
           >
-            Clear Filters
+            {t('common.filter')}
           </Button>
         )}
       </div>
@@ -797,8 +797,8 @@ export default function CatalogPage() {
                   </span>
                 </div>
                 <div className="text-sm text-muted-foreground space-y-1">
-                  <div>In stock: {product.stock} {product.unit}</div>
-                  <div>Min order: {product.moq} {product.unit}</div>
+                  <div>{t('catalog.stock')}: {product.stock} {product.unit}</div>
+                  <div>{t('catalog.minOrder')}: {product.moq} {product.unit}</div>
                 </div>
                 
                 {isConsumer && (
@@ -808,7 +808,7 @@ export default function CatalogPage() {
                     size="sm"
                   >
                     <ShoppingCart className="h-4 w-4 mr-2" />
-                    Add to Cart
+                    {t('catalog.addToCart')}
                     {cart[product.id] && ` (${cart[product.id]})`}
                   </Button>
                 )}

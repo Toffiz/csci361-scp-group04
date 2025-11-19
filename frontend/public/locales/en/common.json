@@ -55,7 +55,18 @@
     "chats": "Chats",
     "activeDialogs": "Active dialogs",
     "processing": "Processing",
-    "assignedToMe": "Assigned to me"
+    "assignedToMe": "Assigned to me",
+    "totalOrders": "Total orders",
+    "openIssues": "Open issues",
+    "quickStartConsumer1": "Browse the product catalog of linked suppliers",
+    "quickStartConsumer2": "Create orders and track their status in the Orders section",
+    "quickStartConsumer3": "Communicate with managers in Chat",
+    "quickStartSupplier1": "Approve link requests in the Links section",
+    "quickStartSupplier2": "Manage products in the Catalog",
+    "quickStartSupplier3": "Process Orders and Complaints",
+    "quickStartSales1": "Process customer Orders",
+    "quickStartSales2": "Communicate with customers in Chat",
+    "quickStartSales3": "Resolve customer Complaints"
   },
   "links": {
     "title": "Links",

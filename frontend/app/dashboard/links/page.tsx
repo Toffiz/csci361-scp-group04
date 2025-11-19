@@ -10,7 +10,7 @@ import { Label } from '@/components/ui/label';
 import { Check, X, Plus, Send } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
 import { useState, useEffect } from 'react';
-
+import { useI18n } from '@/lib/i18n-context';
 // Mock data for static export
 const mockLinks: Link[] = [
   {
@@ -146,6 +146,7 @@ async function declineLink(id: string) {
 export default function LinksPage() {
   const { toast } = useToast();
   const queryClient = useQueryClient();
+  const { t } = useI18n();
   const [user, setUser] = useState<User | null>(null);
   const [showRequestForm, setShowRequestForm] = useState(false);
   const [supplierName, setSupplierName] = useState('');
@@ -227,16 +228,16 @@ export default function LinksPage() {
     <div className="space-y-8">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold">Links</h1>
+          <h1 className="text-3xl font-bold">{t('links.title')}</h1>
           <p className="text-muted-foreground mt-2">
-            {isConsumer ? 'Connect with suppliers' : 'Manage consumer links'}
+            {t('links.subtitle')}
           </p>
         </div>
         
         {isConsumer && (
           <Button onClick={() => setShowRequestForm(!showRequestForm)}>
             <Plus className="h-4 w-4 mr-2" />
-            Request Link
+            {t('links.requested')}
           </Button>
         )}
       </div>
@@ -244,15 +245,15 @@ export default function LinksPage() {
       {isConsumer && showRequestForm && (
         <Card>
           <CardHeader>
-            <CardTitle>Send Link Request</CardTitle>
+            <CardTitle>{t('links.requested')}</CardTitle>
             <CardDescription>
-              Request access to a supplier&apos;s catalog
+              {t('links.subtitle')}
             </CardDescription>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="supplier">Supplier Name</Label>
+                <Label htmlFor="supplier">{t('catalog.supplier')}</Label>
                 <select
                   id="supplier"
                   value={supplierName}
@@ -273,7 +274,7 @@ export default function LinksPage() {
                   disabled={!supplierName || sendRequestMutation.isPending}
                 >
                   <Send className="h-4 w-4 mr-2" />
-                  Send Request
+                  {t('common.submit')}
                 </Button>
                 <Button
                   variant="outline"
@@ -282,7 +283,7 @@ export default function LinksPage() {
                     setSupplierName('');
                   }}
                 >
-                  Cancel
+                  {t('common.cancel')}
                 </Button>
               </div>
             </div>
@@ -293,7 +294,7 @@ export default function LinksPage() {
       {isSupplier && pendingLinks.length > 0 && (
         <div>
           <h2 className="text-xl font-semibold mb-4">
-            Pending Approval ({pendingLinks.length})
+            {t('links.pending')} ({pendingLinks.length})
           </h2>
           <div className="grid gap-4 md:grid-cols-2">
             {pendingLinks.map((link) => (
@@ -312,7 +313,7 @@ export default function LinksPage() {
                       disabled={approveMutation.isPending}
                     >
                       <Check className="h-4 w-4 mr-2" />
-                      Approve
+                      {t('links.approve')}
                     </Button>
                     <Button
                       size="sm"
@@ -321,7 +322,7 @@ export default function LinksPage() {
                       disabled={declineMutation.isPending}
                     >
                       <X className="h-4 w-4 mr-2" />
-                      Decline
+                      {t('links.decline')}
                     </Button>
                   </div>
                 </CardContent>
@@ -333,7 +334,7 @@ export default function LinksPage() {
 
       <div>
         <h2 className="text-xl font-semibold mb-4">
-          {isConsumer ? 'My Connections' : 'Active Links'} ({activeLinks.length})
+          {t('links.active')} ({activeLinks.length})
         </h2>
         <div className="grid gap-4 md:grid-cols-3">
           {activeLinks.map((link) => (
@@ -343,10 +344,10 @@ export default function LinksPage() {
                   <CardTitle className="text-lg">
                     {isConsumer ? link.supplierName : link.consumerName}
                   </CardTitle>
-                  <Badge variant="default">Active</Badge>
+                  <Badge variant="default">{t('links.activeStatus')}</Badge>
                 </div>
                 <CardDescription>
-                  Since {new Date(link.respondedAt || link.requestedAt).toLocaleDateString('en-US')}
+                  {t('links.since')} {new Date(link.respondedAt || link.requestedAt).toLocaleDateString('en-US')}
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -356,7 +357,7 @@ export default function LinksPage() {
             <Card className="md:col-span-3">
               <CardContent className="flex items-center justify-center py-8">
                 <p className="text-muted-foreground">
-                  {isConsumer ? 'No active connections. Send a link request to get started.' : 'No active links'}
+                  {t('links.noActive')}
                 </p>
               </CardContent>
             </Card>
@@ -367,7 +368,7 @@ export default function LinksPage() {
       {isConsumer && pendingLinks.length > 0 && (
         <div>
           <h2 className="text-xl font-semibold mb-4">
-            Pending Requests ({pendingLinks.length})
+            {t('links.pending')} ({pendingLinks.length})
           </h2>
           <div className="grid gap-4 md:grid-cols-3">
             {pendingLinks.map((link) => (
@@ -375,10 +376,10 @@ export default function LinksPage() {
                 <CardHeader>
                   <div className="flex items-start justify-between">
                     <CardTitle className="text-lg">{link.supplierName}</CardTitle>
-                    <Badge variant="secondary">Pending</Badge>
+                    <Badge variant="secondary">{t('links.pending')}</Badge>
                   </div>
                   <CardDescription>
-                    Requested on {new Date(link.requestedAt).toLocaleDateString('en-US')}
+                    {t('links.requested')} {new Date(link.requestedAt).toLocaleDateString('en-US')}
                   </CardDescription>
                 </CardHeader>
               </Card>
