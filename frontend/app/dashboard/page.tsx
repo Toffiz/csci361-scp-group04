@@ -2,16 +2,92 @@
 
 import { useState, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { User, UserRole } from '@/types';
+import { User, UserRole, Link, Order, ChatThread } from '@/types';
 import { Package, ShoppingCart, MessageSquare, AlertCircle, Link2 } from 'lucide-react';
 
 export default function DashboardPage() {
   const [user, setUser] = useState<User | null>(null);
+  const [stats, setStats] = useState({
+    activeLinks: 0,
+    activeOrders: 0,
+    unreadMessages: 0,
+    pendingLinks: 0,
+    totalProducts: 0,
+    totalOrders: 0,
+    openComplaints: 0,
+  });
 
   useEffect(() => {
     const session = localStorage.getItem('session');
     if (session) {
-      setUser(JSON.parse(session));
+      const userData = JSON.parse(session);
+      setUser(userData);
+      
+      // Calculate real stats from localStorage
+      const links: Link[] = JSON.parse(localStorage.getItem('links') || '[]');
+      const orders: Order[] = JSON.parse(localStorage.getItem('orders') || '[]');
+      const threads: ChatThread[] = JSON.parse(localStorage.getItem('chatThreads') || '[]');
+      const products = JSON.parse(localStorage.getItem('products') || '[]');
+      const complaints = JSON.parse(localStorage.getItem('complaints') || '[]');
+      
+      if (userData.role === UserRole.CONSUMER) {
+        const userLinks = links.filter(l => 
+          l.consumerId === userData.id || l.consumerId === userData.email
+        );
+        const activeLinks = userLinks.filter(l => l.status === 'approved').length;
+        
+        const userOrders = orders.filter(o => 
+          o.consumerId === userData.id || o.consumerId === userData.email
+        );
+        const activeOrders = userOrders.filter(o => 
+          o.status === 'pending' || o.status === 'accepted'
+        ).length;
+        
+        const userThreads = threads.filter(t => 
+          t.consumerId === userData.id || t.consumerId === userData.email
+        );
+        const unreadMessages = userThreads.reduce((sum, t) => sum + t.unreadCount, 0);
+        
+        setStats({
+          activeLinks,
+          activeOrders,
+          unreadMessages,
+          pendingLinks: 0,
+          totalProducts: 0,
+          totalOrders: 0,
+          openComplaints: 0,
+        });
+      } else {
+        // Supplier stats
+        const supplierLinks = links.filter(l => 
+          l.supplierId === userData.companyId || l.supplierId === 'supplier-1'
+        );
+        const pendingLinks = supplierLinks.filter(l => l.status === 'pending').length;
+        
+        const supplierProducts = products.filter((p: any) => 
+          p.supplierId === userData.companyId || p.supplierId === 'supplier-1'
+        );
+        const totalProducts = supplierProducts.filter((p: any) => !p.archived).length;
+        
+        const supplierOrders = orders.filter(o => 
+          o.supplierId === userData.companyId || o.supplierId === 'supplier-1'
+        );
+        const totalOrders = supplierOrders.length;
+        
+        const openComplaints = complaints.filter((c: any) => 
+          c.status === 'open' || c.status === 'in_progress'
+        ).length;
+        
+        setStats({
+          activeLinks: 0,
+          activeOrders: 0,
+          unreadMessages: 0,
+          pendingLinks,
+          totalProducts,
+          totalOrders,
+          openComplaints,
+        });
+      }
     }
   }, []);
 
@@ -38,7 +114,7 @@ export default function DashboardPage() {
               <Link2 className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">1</div>
+              <div className="text-2xl font-bold">{stats.activeLinks}</div>
               <p className="text-xs text-muted-foreground">
                 Catalog access
               </p>
@@ -53,7 +129,7 @@ export default function DashboardPage() {
               <ShoppingCart className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">0</div>
+              <div className="text-2xl font-bold">{stats.activeOrders}</div>
               <p className="text-xs text-muted-foreground">
                 Active orders
               </p>
@@ -68,7 +144,7 @@ export default function DashboardPage() {
               <MessageSquare className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">0</div>
+              <div className="text-2xl font-bold">{stats.unreadMessages}</div>
               <p className="text-xs text-muted-foreground">
                 Unread
               </p>
@@ -87,7 +163,7 @@ export default function DashboardPage() {
               <Link2 className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">1</div>
+              <div className="text-2xl font-bold">{stats.pendingLinks}</div>
               <p className="text-xs text-muted-foreground">
                 Link requests
               </p>
@@ -98,6 +174,48 @@ export default function DashboardPage() {
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">
                 Products
+              </CardTitle>
+              <Package className="h-4 w-4 text-muted-foreground" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">{stats.totalProducts}</div>
+              <p className="text-xs text-muted-foreground">
+                In catalog
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">
+                Orders
+              </CardTitle>
+              <ShoppingCart className="h-4 w-4 text-muted-foreground" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">{stats.totalOrders}</div>
+              <p className="text-xs text-muted-foreground">
+                Total orders
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">
+                Complaints
+              </CardTitle>
+              <AlertCircle className="h-4 w-4 text-muted-foreground" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">{stats.openComplaints}</div>
+              <p className="text-xs text-muted-foreground">
+                Open issues
+              </p>
+            </CardContent>
+          </Card>
+        </div>
+      )}
               </CardTitle>
               <Package className="h-4 w-4 text-muted-foreground" />
             </CardHeader>

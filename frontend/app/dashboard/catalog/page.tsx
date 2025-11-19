@@ -343,6 +343,11 @@ export default function CatalogPage() {
     if (stored) {
       setUser(JSON.parse(stored));
     }
+    // Initialize products in localStorage if not present
+    const storedProducts = localStorage.getItem('products');
+    if (!storedProducts) {
+      localStorage.setItem('products', JSON.stringify(mockProducts));
+    }
     // Load cart from localStorage
     const storedCart = localStorage.getItem('cart');
     if (storedCart) {

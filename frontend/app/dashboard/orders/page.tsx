@@ -496,6 +496,7 @@ export default function OrdersPage() {
   const [cart, setCart] = useState<CartItem[]>([]);
   const [notes, setNotes] = useState('');
   const [showCheckout, setShowCheckout] = useState(false);
+  const [availableProducts, setAvailableProducts] = useState<Product[]>(mockProducts);
 
   useEffect(() => {
     const stored = localStorage.getItem('session');
@@ -503,14 +504,22 @@ export default function OrdersPage() {
       setUser(JSON.parse(stored));
     }
     
+    // Load products from localStorage
+    const storedProducts = localStorage.getItem('products');
+    if (storedProducts) {
+      setAvailableProducts(JSON.parse(storedProducts));
+    }
+    
     // Load cart from localStorage
     const storedCart = localStorage.getItem('cart');
     if (storedCart) {
       const cartData = JSON.parse(storedCart);
+      // Get products from localStorage to ensure sync
+      const products = storedProducts ? JSON.parse(storedProducts) : mockProducts;
       // Convert cart object to CartItem array
       const cartItems: CartItem[] = [];
       Object.entries(cartData).forEach(([productId, quantity]) => {
-        const product = mockProducts.find(p => p.id === productId);
+        const product = products.find((p: Product) => p.id === productId);
         if (product) {
           cartItems.push({ product, quantity: quantity as number });
         }
@@ -622,7 +631,7 @@ export default function OrdersPage() {
               <CardDescription>Select items to add to your cart</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              {mockProducts.map((product) => (
+              {availableProducts.map((product) => (
                 <div
                   key={product.id}
                   className="flex items-center justify-between p-3 border rounded-lg"
