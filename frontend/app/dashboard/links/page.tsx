@@ -61,7 +61,7 @@ const mockLinks: Link[] = [
     supplierName: 'Kazakhstan Food Distributors',
     consumerId: 'consumer@scp.kz',
     consumerName: 'Alice Brown',
-    status: LinkStatus.REJECTED,
+    status: LinkStatus.DECLINED,
     requestedAt: new Date('2024-03-10').toISOString(),
     respondedAt: new Date('2024-03-11').toISOString(),
     archived: false,
