@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { Product, User, UserRole } from '@/types';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -236,6 +237,136 @@ const mockProducts: Product[] = [
     createdAt: new Date('2024-02-15').toISOString(),
     updatedAt: new Date('2024-02-15').toISOString(),
   },
+  {
+    id: '18',
+    name: 'Barley Groats',
+    description: 'Pearl barley for soups and porridge',
+    priceKZT: 340,
+    unit: 'kg',
+    stock: 950,
+    moq: 100,
+    supplierId: 'supplier-2',
+    archived: false,
+    createdAt: new Date('2024-02-18').toISOString(),
+    updatedAt: new Date('2024-02-18').toISOString(),
+  },
+  {
+    id: '19',
+    name: 'White Beans',
+    description: 'Large white beans, rich in protein',
+    priceKZT: 520,
+    unit: 'kg',
+    stock: 550,
+    moq: 50,
+    supplierId: 'supplier-2',
+    archived: false,
+    createdAt: new Date('2024-02-20').toISOString(),
+    updatedAt: new Date('2024-02-20').toISOString(),
+  },
+  {
+    id: '20',
+    name: 'Green Tea',
+    description: 'Premium Chinese green tea',
+    priceKZT: 1400,
+    unit: 'kg',
+    stock: 250,
+    moq: 10,
+    supplierId: 'supplier-3',
+    archived: false,
+    createdAt: new Date('2024-02-22').toISOString(),
+    updatedAt: new Date('2024-02-22').toISOString(),
+  },
+  {
+    id: '21',
+    name: 'Semolina',
+    description: 'Fine durum wheat semolina',
+    priceKZT: 260,
+    unit: 'kg',
+    stock: 1100,
+    moq: 100,
+    supplierId: 'supplier-2',
+    archived: false,
+    createdAt: new Date('2024-02-25').toISOString(),
+    updatedAt: new Date('2024-02-25').toISOString(),
+  },
+  {
+    id: '22',
+    name: 'Millet Groats',
+    description: 'Golden millet for porridge',
+    priceKZT: 320,
+    unit: 'kg',
+    stock: 800,
+    moq: 100,
+    supplierId: 'supplier-2',
+    archived: false,
+    createdAt: new Date('2024-02-28').toISOString(),
+    updatedAt: new Date('2024-02-28').toISOString(),
+  },
+  {
+    id: '23',
+    name: 'Cocoa Powder',
+    description: 'Natural unsweetened cocoa powder',
+    priceKZT: 1600,
+    unit: 'kg',
+    stock: 180,
+    moq: 10,
+    supplierId: 'supplier-3',
+    archived: false,
+    createdAt: new Date('2024-03-01').toISOString(),
+    updatedAt: new Date('2024-03-01').toISOString(),
+  },
+  {
+    id: '24',
+    name: 'Dried Apricots',
+    description: 'Sundried apricots from Uzbekistan',
+    priceKZT: 1100,
+    unit: 'kg',
+    stock: 300,
+    moq: 20,
+    supplierId: 'supplier-3',
+    archived: false,
+    createdAt: new Date('2024-03-03').toISOString(),
+    updatedAt: new Date('2024-03-03').toISOString(),
+  },
+  {
+    id: '25',
+    name: 'Pumpkin Seeds',
+    description: 'Raw hulled pumpkin seeds',
+    priceKZT: 950,
+    unit: 'kg',
+    stock: 400,
+    moq: 25,
+    supplierId: 'supplier-2',
+    archived: false,
+    createdAt: new Date('2024-03-05').toISOString(),
+    updatedAt: new Date('2024-03-05').toISOString(),
+  },
+  {
+    id: '26',
+    name: 'Sesame Seeds',
+    description: 'White sesame seeds for baking',
+    priceKZT: 880,
+    unit: 'kg',
+    stock: 450,
+    moq: 25,
+    supplierId: 'supplier-2',
+    archived: false,
+    createdAt: new Date('2024-03-08').toISOString(),
+    updatedAt: new Date('2024-03-08').toISOString(),
+  },
+  {
+    id: '27',
+    name: 'Raisins',
+    description: 'Sweet golden raisins',
+    priceKZT: 750,
+    unit: 'kg',
+    stock: 500,
+    moq: 30,
+    supplierId: 'supplier-3',
+    archived: false,
+    createdAt: new Date('2024-03-10').toISOString(),
+    updatedAt: new Date('2024-03-10').toISOString(),
+  },
 ];
 
 const mockSuppliers = [
@@ -461,10 +592,12 @@ export default function CatalogPage() {
         </div>
         <div className="flex gap-2">
           {isConsumer && cartCount > 0 && (
-            <Button className="relative" variant="outline">
-              <ShoppingCart className="h-4 w-4 mr-2" />
-              Cart ({cartCount})
-            </Button>
+            <Link href="/dashboard/orders">
+              <Button className="relative" variant="outline">
+                <ShoppingCart className="h-4 w-4 mr-2" />
+                Cart ({cartCount})
+              </Button>
+            </Link>
           )}
           {isSupplier && (
             <Button onClick={() => {
