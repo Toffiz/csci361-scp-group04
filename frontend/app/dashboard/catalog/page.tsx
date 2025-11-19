@@ -366,7 +366,7 @@ export default function CatalogPage() {
   const products = allProducts?.filter((p) => {
     const matchesSearch = !search || 
       p.name.toLowerCase().includes(search.toLowerCase()) ||
-      p.description.toLowerCase().includes(search.toLowerCase());
+      (p.description && p.description.toLowerCase().includes(search.toLowerCase()));
     const matchesSupplier = !supplier || p.supplierId === supplier;
     return matchesSearch && matchesSupplier;
   });
