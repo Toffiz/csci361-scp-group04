@@ -357,9 +357,18 @@ export default function CatalogPage() {
     }
   }, [cart]);
   
-  const { data: products, isLoading } = useQuery({
-    queryKey: ['catalog', search, supplier],
-    queryFn: () => fetchCatalog({ search, supplier }),
+  const { data: allProducts, isLoading } = useQuery({
+    queryKey: ['catalog'],
+    queryFn: () => fetchCatalog({ search: '', supplier: '' }),
+  });
+
+  // Client-side filtering to avoid refetch on every keystroke
+  const products = allProducts?.filter((p) => {
+    const matchesSearch = !search || 
+      p.name.toLowerCase().includes(search.toLowerCase()) ||
+      p.description.toLowerCase().includes(search.toLowerCase());
+    const matchesSupplier = !supplier || p.supplierId === supplier;
+    return matchesSearch && matchesSupplier;
   });
 
   const addProductMutation = useMutation({
@@ -447,7 +456,7 @@ export default function CatalogPage() {
         </div>
         <div className="flex gap-2">
           {isConsumer && cartCount > 0 && (
-            <Button className="relative" onClick={() => router.push('/dashboard/orders')}>
+            <Button className="relative" variant="outline">
               <ShoppingCart className="h-4 w-4 mr-2" />
               Cart ({cartCount})
             </Button>
