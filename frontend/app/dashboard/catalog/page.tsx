@@ -14,6 +14,7 @@ import { useState, useEffect } from 'react';
 import { useToast } from '@/components/ui/use-toast';
 import { useRouter } from 'next/navigation';
 import { useI18n } from '@/lib/i18n-context';
+import { translateData } from '@/lib/translations-data';
 
 // Mock data
 const mockProducts: Product[] = [
@@ -452,7 +453,7 @@ async function deleteProduct(id: string): Promise<void> {
 }
 
 export default function CatalogPage() {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   const { toast } = useToast();
   const queryClient = useQueryClient();
   const router = useRouter();
@@ -742,7 +743,7 @@ export default function CatalogPage() {
               <option value="">{t('catalog.allSuppliers')}</option>
               {mockSuppliers.map((s) => (
                 <option key={s.id} value={s.id}>
-                  {s.name}
+                  {translateData(s.name, locale)}
                 </option>
               ))}
             </select>
@@ -764,7 +765,7 @@ export default function CatalogPage() {
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {products?.map((product) => {
-          const supplierName = mockSuppliers.find((s) => s.id === product.supplierId)?.name || 'Unknown Supplier';
+          const supplierName = translateData(mockSuppliers.find((s) => s.id === product.supplierId)?.name || 'Unknown Supplier', locale);
           const canManage = isSupplier && product.supplierId === user.companyId;
           
           return (
@@ -773,12 +774,12 @@ export default function CatalogPage() {
                 <div className="flex items-start justify-between">
                   <Package className="h-10 w-10 text-muted-foreground" />
                   {product.stock < 100 && (
-                    <Badge variant="destructive">Low Stock</Badge>
+                    <Badge variant="destructive">{t('catalog.lowStock')}</Badge>
                   )}
                 </div>
-                <CardTitle className="text-xl mt-4">{product.name}</CardTitle>
+                <CardTitle className="text-xl mt-4">{translateData(product.name, locale)}</CardTitle>
                 <CardDescription className="line-clamp-2">
-                  {product.description}
+                  {translateData(product.description, locale)}
                 </CardDescription>
                 {isConsumer && (
                   <div className="flex items-center gap-2 text-sm text-muted-foreground mt-2">
@@ -793,7 +794,7 @@ export default function CatalogPage() {
                     {formatCurrencyKZT(product.priceKZT)}
                   </span>
                   <span className="text-muted-foreground text-sm">
-                    per {product.unit}
+                    {product.unit}
                   </span>
                 </div>
                 <div className="text-sm text-muted-foreground space-y-1">
@@ -822,7 +823,7 @@ export default function CatalogPage() {
                       size="sm"
                     >
                       <Edit className="h-4 w-4 mr-2" />
-                      Edit
+                      {t('common.edit')}
                     </Button>
                     <Button 
                       variant="outline"

@@ -79,7 +79,12 @@
     "noPending": "No pending requests",
     "noActive": "No active links",
     "since": "Since",
-    "activeStatus": "Active"
+    "activeStatus": "Active",
+    "statusPending": "Pending",
+    "statusApproved": "Approved",
+    "statusDeclined": "Declined",
+    "consumer": "Consumer",
+    "company": "Company"
   },
   "catalog": {
     "title": "Catalog",
@@ -91,7 +96,14 @@
     "loading": "Loading...",
     "addToCart": "Add to Cart",
     "allSuppliers": "All Suppliers",
-    "supplier": "Supplier"
+    "supplier": "Supplier",
+    "addProduct": "Add Product",
+    "productName": "Product Name",
+    "description": "Description",
+    "unit": "Unit",
+    "price": "Price",
+    "quantity": "Quantity",
+    "actions": "Actions"
   },
   "orders": {
     "title": "Orders",
@@ -108,7 +120,16 @@
     "price": "Price",
     "total": "Total",
     "noOrders": "No orders",
-    "emptyCart": "Cart is empty"
+    "emptyCart": "Cart is empty",
+    "statusPending": "Pending",
+    "statusAccepted": "Accepted",
+    "statusCompleted": "Completed",
+    "statusCancelled": "Cancelled",
+    "placeOrder": "Place Order",
+    "cart": "Cart",
+    "product": "Product",
+    "removeFromCart": "Remove",
+    "notes": "Notes"
   },
   "chat": {
     "title": "Chat",

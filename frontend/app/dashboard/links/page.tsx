@@ -11,6 +11,7 @@ import { Check, X, Plus, Send } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
 import { useState, useEffect } from 'react';
 import { useI18n } from '@/lib/i18n-context';
+import { translateData, getLinkStatus } from '@/lib/translations-data';
 // Mock data for static export
 const mockLinks: Link[] = [
   {
@@ -146,7 +147,7 @@ async function declineLink(id: string) {
 export default function LinksPage() {
   const { toast } = useToast();
   const queryClient = useQueryClient();
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   const [user, setUser] = useState<User | null>(null);
   const [showRequestForm, setShowRequestForm] = useState(false);
   const [supplierName, setSupplierName] = useState('');
@@ -342,12 +343,12 @@ export default function LinksPage() {
               <CardHeader>
                 <div className="flex items-start justify-between">
                   <CardTitle className="text-lg">
-                    {isConsumer ? link.supplierName : link.consumerName}
+                    {isConsumer ? translateData(link.supplierName, locale) : link.consumerName}
                   </CardTitle>
                   <Badge variant="default">{t('links.activeStatus')}</Badge>
                 </div>
                 <CardDescription>
-                  {t('links.since')} {new Date(link.respondedAt || link.requestedAt).toLocaleDateString('en-US')}
+                  {t('links.since')} {new Date(link.respondedAt || link.requestedAt).toLocaleDateString(locale === 'ru' ? 'ru-RU' : 'en-US')}
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -375,11 +376,11 @@ export default function LinksPage() {
               <Card key={link.id}>
                 <CardHeader>
                   <div className="flex items-start justify-between">
-                    <CardTitle className="text-lg">{link.supplierName}</CardTitle>
+                    <CardTitle className="text-lg">{translateData(link.supplierName, locale)}</CardTitle>
                     <Badge variant="secondary">{t('links.pending')}</Badge>
                   </div>
                   <CardDescription>
-                    {t('links.requested')} {new Date(link.requestedAt).toLocaleDateString('en-US')}
+                    {t('links.requested')} {new Date(link.requestedAt).toLocaleDateString(locale === 'ru' ? 'ru-RU' : 'en-US')}
                   </CardDescription>
                 </CardHeader>
               </Card>

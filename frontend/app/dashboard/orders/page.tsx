@@ -11,6 +11,8 @@ import { ShoppingCart, Package, Plus, Minus, Trash2, Check, X } from 'lucide-rea
 import { Order, OrderStatus, Product, User, UserRole } from '@/types';
 import { formatCurrencyKZT } from '@/lib/currency';
 import { useToast } from '@/components/ui/use-toast';
+import { useI18n } from '@/lib/i18n-context';
+import { translateData, getOrderStatus } from '@/lib/translations-data';
 
 interface CartItem {
   product: Product;
@@ -620,6 +622,7 @@ async function updateOrderStatus(orderId: string, status: OrderStatus): Promise<
 }
 
 export default function OrdersPage() {
+  const { t, locale } = useI18n();
   const { toast } = useToast();
   const queryClient = useQueryClient();
   const [user, setUser] = useState<User | null>(null);
@@ -802,7 +805,7 @@ export default function OrdersPage() {
                       className="flex items-center justify-between p-3 border rounded-lg"
                     >
                       <div className="flex-1">
-                        <p className="font-medium">{item.product.name}</p>
+                        <p className="font-medium">{translateData(item.product.name, locale)}</p>
                         <p className="text-sm text-muted-foreground">
                           {formatCurrencyKZT(item.product.priceKZT)} × {item.quantity} = {formatCurrencyKZT(item.product.priceKZT * item.quantity)}
                         </p>
@@ -905,7 +908,7 @@ export default function OrdersPage() {
                       'outline'
                     }
                   >
-                    {order.status}
+                    {getOrderStatus(order.status, locale)}
                   </Badge>
                 </div>
               </CardHeader>
@@ -914,7 +917,7 @@ export default function OrdersPage() {
                   {order.items.map((item) => (
                     <div key={item.id} className="flex justify-between text-sm">
                       <span>
-                        {item.productName} ({item.quantity} {item.unit})
+                        {translateData(item.productName, locale)} ({item.quantity} {item.unit})
                       </span>
                       <span className="font-medium">
                         {formatCurrencyKZT(item.totalKZT)}
@@ -925,13 +928,13 @@ export default function OrdersPage() {
                 
                 {order.notes && (
                   <div className="text-sm">
-                    <p className="font-medium">Notes:</p>
+                    <p className="font-medium">{t('orders.notes')}:</p>
                     <p className="text-muted-foreground">{order.notes}</p>
                   </div>
                 )}
 
                 <div className="flex items-center justify-between pt-2 border-t">
-                  <span className="font-bold">Total:</span>
+                  <span className="font-bold">{t('orders.total')}:</span>
                   <span className="font-bold text-lg">
                     {formatCurrencyKZT(order.totalKZT)}
                   </span>

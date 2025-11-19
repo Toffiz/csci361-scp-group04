@@ -79,7 +79,12 @@
     "noPending": "Нет ожидающих запросов",
     "noActive": "Нет активных связей",
     "since": "С",
-    "activeStatus": "Активна"
+    "activeStatus": "Активна",
+    "statusPending": "В ожидании",
+    "statusApproved": "Одобрена",
+    "statusDeclined": "Отклонена",
+    "consumer": "Потребитель",
+    "company": "Компания"
   },
   "catalog": {
     "title": "Каталог",
@@ -91,7 +96,14 @@
     "loading": "Загрузка...",
     "addToCart": "В корзину",
     "allSuppliers": "Все поставщики",
-    "supplier": "Поставщик"
+    "supplier": "Поставщик",
+    "addProduct": "Добавить товар",
+    "productName": "Название товара",
+    "description": "Описание",
+    "unit": "Единица",
+    "price": "Цена",
+    "quantity": "Количество",
+    "actions": "Действия"
   },
   "orders": {
     "title": "Заказы",
@@ -108,7 +120,16 @@
     "price": "Цена",
     "total": "Итого",
     "noOrders": "Нет заказов",
-    "emptyCart": "Корзина пуста"
+    "emptyCart": "Корзина пуста",
+    "statusPending": "В ожидании",
+    "statusAccepted": "Принят",
+    "statusCompleted": "Завершён",
+    "statusCancelled": "Отменён",
+    "placeOrder": "Оформить заказ",
+    "cart": "Корзина",
+    "product": "Товар",
+    "removeFromCart": "Удалить",
+    "notes": "Примечания"
   },
   "chat": {
     "title": "Чат",
