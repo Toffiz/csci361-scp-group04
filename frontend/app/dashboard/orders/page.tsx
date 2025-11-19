@@ -743,15 +743,15 @@ export default function OrdersPage() {
     <div className="space-y-8">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold">Orders</h1>
+          <h1 className="text-3xl font-bold">{t('orders.title')}</h1>
           <p className="text-muted-foreground mt-2">
-            {isConsumer ? 'Create and manage your orders' : 'Manage incoming orders'}
+            {isConsumer ? t('orders.subtitleConsumer') : t('orders.subtitleSupplier')}
           </p>
         </div>
         {isConsumer && (
           <Button onClick={() => setShowCheckout(!showCheckout)}>
             <ShoppingCart className="h-4 w-4 mr-2" />
-            {showCheckout ? 'View Orders' : 'New Order'}
+            {showCheckout ? t('orders.viewOrders') : t('orders.newOrder')}
           </Button>
         )}
       </div>
@@ -760,8 +760,8 @@ export default function OrdersPage() {
         <div className="grid md:grid-cols-2 gap-6">
           <Card>
             <CardHeader>
-              <CardTitle>Available Products</CardTitle>
-              <CardDescription>Select items to add to your cart</CardDescription>
+              <CardTitle>{t('orders.availableProducts')}</CardTitle>
+              <CardDescription>{t('orders.selectItems')}</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               {availableProducts.map((product) => (
@@ -874,7 +874,7 @@ export default function OrdersPage() {
 
       <div>
         <h2 className="text-xl font-semibold mb-4">
-          {isConsumer ? 'My Orders' : 'Incoming Orders'} ({userOrders.length})
+          {isConsumer ? t('orders.myOrders') : t('orders.incomingOrders')} ({userOrders.length})
         </h2>
         <div className="space-y-4">
           {userOrders.length === 0 && (
@@ -882,7 +882,7 @@ export default function OrdersPage() {
               <CardContent className="flex flex-col items-center justify-center py-16">
                 <Package className="h-16 w-16 text-muted-foreground mb-4" />
                 <p className="text-muted-foreground text-center">
-                  No orders yet
+                  {t('orders.noOrdersYet')}
                 </p>
               </CardContent>
             </Card>

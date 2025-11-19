@@ -108,8 +108,13 @@
   "orders": {
     "title": "Orders",
     "subtitle": "Manage orders",
+    "subtitleConsumer": "Create and manage your orders",
+    "subtitleSupplier": "Manage incoming orders",
     "myOrders": "My Orders",
+    "incomingOrders": "Incoming Orders",
     "createOrder": "Create Order",
+    "newOrder": "New Order",
+    "viewOrders": "View Orders",
     "viewCart": "View Cart",
     "checkout": "Checkout",
     "totalAmount": "Total Amount",
@@ -120,6 +125,7 @@
     "price": "Price",
     "total": "Total",
     "noOrders": "No orders",
+    "noOrdersYet": "No orders yet",
     "emptyCart": "Cart is empty",
     "statusPending": "Pending",
     "statusAccepted": "Accepted",
@@ -129,7 +135,11 @@
     "cart": "Cart",
     "product": "Product",
     "removeFromCart": "Remove",
-    "notes": "Notes"
+    "notes": "Notes",
+    "availableProducts": "Available Products",
+    "selectItems": "Select items to add to your cart",
+    "to": "To",
+    "from": "From"
   },
   "chat": {
     "title": "Chat",

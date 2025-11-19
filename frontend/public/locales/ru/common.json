@@ -108,8 +108,13 @@
   "orders": {
     "title": "Заказы",
     "subtitle": "Управление заказами",
+    "subtitleConsumer": "Создавайте заказы и управляйте ими",
+    "subtitleSupplier": "Управление входящими заказами",
     "myOrders": "Мои заказы",
+    "incomingOrders": "Входящие заказы",
     "createOrder": "Создать заказ",
+    "newOrder": "Новый заказ",
+    "viewOrders": "Просмотр заказов",
     "viewCart": "Корзина",
     "checkout": "Оформить заказ",
     "totalAmount": "Общая сумма",
@@ -120,6 +125,7 @@
     "price": "Цена",
     "total": "Итого",
     "noOrders": "Нет заказов",
+    "noOrdersYet": "Заказов пока нет",
     "emptyCart": "Корзина пуста",
     "statusPending": "В ожидании",
     "statusAccepted": "Принят",
@@ -129,7 +135,11 @@
     "cart": "Корзина",
     "product": "Товар",
     "removeFromCart": "Удалить",
-    "notes": "Примечания"
+    "notes": "Примечания",
+    "availableProducts": "Доступные товары",
+    "selectItems": "Выберите товары для добавления в корзину",
+    "to": "Кому",
+    "from": "От"
   },
   "chat": {
     "title": "Чат",
