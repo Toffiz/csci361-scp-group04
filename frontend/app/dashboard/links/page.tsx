@@ -212,7 +212,7 @@ export default function LinksPage() {
           <CardHeader>
             <CardTitle>Send Link Request</CardTitle>
             <CardDescription>
-              Request access to a supplier's catalog
+              Request access to a supplier&apos;s catalog
             </CardDescription>
           </CardHeader>
           <CardContent>
