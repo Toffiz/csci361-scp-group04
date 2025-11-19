@@ -779,7 +779,7 @@ export default function CatalogPage() {
                 </div>
                 <CardTitle className="text-xl mt-4">{translateData(product.name, locale)}</CardTitle>
                 <CardDescription className="line-clamp-2">
-                  {translateData(product.description, locale)}
+                  {translateData(product.description || '', locale)}
                 </CardDescription>
                 {isConsumer && (
                   <div className="flex items-center gap-2 text-sm text-muted-foreground mt-2">
