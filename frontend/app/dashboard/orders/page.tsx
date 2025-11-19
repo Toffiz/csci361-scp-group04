@@ -76,7 +76,7 @@ const mockOrders: Order[] = [
     supplierName: 'Almaty Grain Trading LLC',
     consumerId: 'consumer@scp.kz',
     consumerName: 'Alice Brown',
-    status: OrderStatus.CONFIRMED,
+    status: OrderStatus.ACCEPTED,
     items: [
       {
         id: 'item-2',
@@ -108,7 +108,7 @@ const mockOrders: Order[] = [
     supplierName: 'Almaty Grain Trading LLC',
     consumerId: 'consumer@scp.kz',
     consumerName: 'Alice Brown',
-    status: OrderStatus.SHIPPED,
+    status: OrderStatus.ACCEPTED,
     items: [
       {
         id: 'item-4',
@@ -131,7 +131,7 @@ const mockOrders: Order[] = [
     supplierName: 'Kazakhstan Food Distributors',
     consumerId: 'consumer@scp.kz',
     consumerName: 'Alice Brown',
-    status: OrderStatus.DELIVERED,
+    status: OrderStatus.COMPLETED,
     items: [
       {
         id: 'item-5',
@@ -195,7 +195,7 @@ const mockOrders: Order[] = [
     supplierName: 'Kazakhstan Food Distributors',
     consumerId: 'consumer@scp.kz',
     consumerName: 'Alice Brown',
-    status: OrderStatus.CONFIRMED,
+    status: OrderStatus.ACCEPTED,
     items: [
       {
         id: 'item-9',
