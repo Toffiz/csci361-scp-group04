@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { User, UserRole, Link, Order, ChatThread } from '@/types';
+import { User, UserRole, Link, Order, Thread } from '@/types';
 import { Package, ShoppingCart, MessageSquare, AlertCircle, Link2 } from 'lucide-react';
 
 export default function DashboardPage() {
@@ -26,7 +26,7 @@ export default function DashboardPage() {
       // Calculate real stats from localStorage
       const links: Link[] = JSON.parse(localStorage.getItem('links') || '[]');
       const orders: Order[] = JSON.parse(localStorage.getItem('orders') || '[]');
-      const threads: ChatThread[] = JSON.parse(localStorage.getItem('chatThreads') || '[]');
+      const threads: Thread[] = JSON.parse(localStorage.getItem('chatThreads') || '[]');
       const products = JSON.parse(localStorage.getItem('products') || '[]');
       const complaints = JSON.parse(localStorage.getItem('complaints') || '[]');
       
