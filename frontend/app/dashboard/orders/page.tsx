@@ -70,6 +70,171 @@ const mockOrders: Order[] = [
     updatedAt: new Date('2024-03-10').toISOString(),
     archived: false,
   },
+  {
+    id: 'order-2',
+    supplierId: 'supplier-1',
+    supplierName: 'Almaty Grain Trading LLC',
+    consumerId: 'consumer@scp.kz',
+    consumerName: 'Alice Brown',
+    status: OrderStatus.CONFIRMED,
+    items: [
+      {
+        id: 'item-2',
+        productId: '2',
+        productName: 'Granulated Sugar',
+        unit: 'kg',
+        quantity: 200,
+        priceKZT: 320,
+        totalKZT: 64000,
+      },
+      {
+        id: 'item-3',
+        productId: '3',
+        productName: 'Sunflower Oil',
+        unit: 'L',
+        quantity: 40,
+        priceKZT: 850,
+        totalKZT: 34000,
+      },
+    ],
+    totalKZT: 98000,
+    createdAt: new Date('2024-03-08').toISOString(),
+    updatedAt: new Date('2024-03-09').toISOString(),
+    archived: false,
+  },
+  {
+    id: 'order-3',
+    supplierId: 'supplier-1',
+    supplierName: 'Almaty Grain Trading LLC',
+    consumerId: 'consumer@scp.kz',
+    consumerName: 'Alice Brown',
+    status: OrderStatus.SHIPPED,
+    items: [
+      {
+        id: 'item-4',
+        productId: '4',
+        productName: 'Round Grain Rice',
+        unit: 'kg',
+        quantity: 150,
+        priceKZT: 450,
+        totalKZT: 67500,
+      },
+    ],
+    totalKZT: 67500,
+    createdAt: new Date('2024-03-05').toISOString(),
+    updatedAt: new Date('2024-03-11').toISOString(),
+    archived: false,
+  },
+  {
+    id: 'order-4',
+    supplierId: 'supplier-2',
+    supplierName: 'Kazakhstan Food Distributors',
+    consumerId: 'consumer@scp.kz',
+    consumerName: 'Alice Brown',
+    status: OrderStatus.DELIVERED,
+    items: [
+      {
+        id: 'item-5',
+        productId: '5',
+        productName: 'Buckwheat Groats',
+        unit: 'kg',
+        quantity: 100,
+        priceKZT: 380,
+        totalKZT: 38000,
+      },
+      {
+        id: 'item-6',
+        productId: '6',
+        productName: 'Pasta Vermicelli',
+        unit: 'kg',
+        quantity: 200,
+        priceKZT: 290,
+        totalKZT: 58000,
+      },
+    ],
+    totalKZT: 96000,
+    createdAt: new Date('2024-02-28').toISOString(),
+    updatedAt: new Date('2024-03-06').toISOString(),
+    archived: false,
+  },
+  {
+    id: 'order-5',
+    supplierId: 'supplier-3',
+    supplierName: 'Astana Wholesale Co.',
+    consumerId: 'consumer@scp.kz',
+    consumerName: 'Alice Brown',
+    status: OrderStatus.PENDING,
+    items: [
+      {
+        id: 'item-7',
+        productId: '8',
+        productName: 'Black Tea Leaves',
+        unit: 'kg',
+        quantity: 20,
+        priceKZT: 1200,
+        totalKZT: 24000,
+      },
+      {
+        id: 'item-8',
+        productId: '9',
+        productName: 'Instant Coffee',
+        unit: 'kg',
+        quantity: 10,
+        priceKZT: 2800,
+        totalKZT: 28000,
+      },
+    ],
+    totalKZT: 52000,
+    createdAt: new Date('2024-03-12').toISOString(),
+    updatedAt: new Date('2024-03-12').toISOString(),
+    archived: false,
+  },
+  {
+    id: 'order-6',
+    supplierId: 'supplier-2',
+    supplierName: 'Kazakhstan Food Distributors',
+    consumerId: 'consumer@scp.kz',
+    consumerName: 'Alice Brown',
+    status: OrderStatus.CONFIRMED,
+    items: [
+      {
+        id: 'item-9',
+        productId: '10',
+        productName: 'Dried Lentils',
+        unit: 'kg',
+        quantity: 100,
+        priceKZT: 420,
+        totalKZT: 42000,
+      },
+    ],
+    totalKZT: 42000,
+    createdAt: new Date('2024-03-09').toISOString(),
+    updatedAt: new Date('2024-03-10').toISOString(),
+    archived: false,
+  },
+  {
+    id: 'order-7',
+    supplierId: 'supplier-1',
+    supplierName: 'Almaty Grain Trading LLC',
+    consumerId: 'consumer@scp.kz',
+    consumerName: 'Alice Brown',
+    status: OrderStatus.CANCELLED,
+    items: [
+      {
+        id: 'item-10',
+        productId: '11',
+        productName: 'Tomato Paste',
+        unit: 'kg',
+        quantity: 50,
+        priceKZT: 650,
+        totalKZT: 32500,
+      },
+    ],
+    totalKZT: 32500,
+    createdAt: new Date('2024-03-07').toISOString(),
+    updatedAt: new Date('2024-03-08').toISOString(),
+    archived: false,
+  },
 ];
 
 async function fetchOrders(): Promise<Order[]> {
@@ -142,6 +307,22 @@ export default function OrdersPage() {
     if (stored) {
       setUser(JSON.parse(stored));
     }
+    
+    // Load cart from localStorage
+    const storedCart = localStorage.getItem('cart');
+    if (storedCart) {
+      const cartData = JSON.parse(storedCart);
+      // Convert cart object to CartItem array
+      const cartItems: CartItem[] = [];
+      Object.entries(cartData).forEach(([productId, quantity]) => {
+        const product = mockProducts.find(p => p.id === productId);
+        if (product) {
+          cartItems.push({ product, quantity: quantity as number });
+        }
+      });
+      setCart(cartItems);
+      setShowCheckout(cartItems.length > 0);
+    }
   }, []);
 
   const { data: orders, isLoading } = useQuery({
@@ -159,6 +340,8 @@ export default function OrdersPage() {
       setCart([]);
       setNotes('');
       setShowCheckout(false);
+      // Clear cart from localStorage
+      localStorage.removeItem('cart');
       toast({
         title: 'Success',
         description: 'Order created successfully',
@@ -186,7 +369,9 @@ export default function OrdersPage() {
   const isSupplier = [UserRole.OWNER, UserRole.ADMIN, UserRole.SALES].includes(user.role);
 
   const userOrders = orders?.filter((o) =>
-    isConsumer ? o.consumerId === user.id : o.supplierId === user.companyId
+    isConsumer 
+      ? o.consumerId === user.id || o.consumerId === user.email
+      : o.supplierId === user.companyId || o.supplierId === 'supplier-1'
   ) || [];
 
   const addToCart = (product: Product) => {

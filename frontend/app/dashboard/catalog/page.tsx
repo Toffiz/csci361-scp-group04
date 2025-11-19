@@ -11,6 +11,7 @@ import { formatCurrencyKZT } from '@/lib/currency';
 import { Package, Search, ShoppingCart, Store, Plus, Edit, Trash2, Save } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { useToast } from '@/components/ui/use-toast';
+import { useRouter } from 'next/navigation';
 
 // Mock data
 const mockProducts: Product[] = [
@@ -65,6 +66,175 @@ const mockProducts: Product[] = [
     archived: false,
     createdAt: new Date('2024-01-15').toISOString(),
     updatedAt: new Date('2024-01-15').toISOString(),
+  },
+  {
+    id: '5',
+    name: 'Buckwheat Groats',
+    description: 'Organic buckwheat for healthy meals',
+    priceKZT: 380,
+    unit: 'kg',
+    stock: 800,
+    moq: 50,
+    supplierId: 'supplier-2',
+    archived: false,
+    createdAt: new Date('2024-01-20').toISOString(),
+    updatedAt: new Date('2024-01-20').toISOString(),
+  },
+  {
+    id: '6',
+    name: 'Pasta Vermicelli',
+    description: 'Durum wheat pasta',
+    priceKZT: 290,
+    unit: 'kg',
+    stock: 1500,
+    moq: 100,
+    supplierId: 'supplier-2',
+    archived: false,
+    createdAt: new Date('2024-01-20').toISOString(),
+    updatedAt: new Date('2024-01-20').toISOString(),
+  },
+  {
+    id: '7',
+    name: 'Iodized Salt',
+    description: 'Fine table salt enriched with iodine',
+    priceKZT: 120,
+    unit: 'kg',
+    stock: 2000,
+    moq: 200,
+    supplierId: 'supplier-2',
+    archived: false,
+    createdAt: new Date('2024-01-22').toISOString(),
+    updatedAt: new Date('2024-01-22').toISOString(),
+  },
+  {
+    id: '8',
+    name: 'Black Tea Leaves',
+    description: 'Premium Ceylon black tea',
+    priceKZT: 1200,
+    unit: 'kg',
+    stock: 300,
+    moq: 10,
+    supplierId: 'supplier-3',
+    archived: false,
+    createdAt: new Date('2024-01-25').toISOString(),
+    updatedAt: new Date('2024-01-25').toISOString(),
+  },
+  {
+    id: '9',
+    name: 'Instant Coffee',
+    description: 'Freeze-dried Arabica coffee',
+    priceKZT: 2800,
+    unit: 'kg',
+    stock: 150,
+    moq: 5,
+    supplierId: 'supplier-3',
+    archived: false,
+    createdAt: new Date('2024-01-25').toISOString(),
+    updatedAt: new Date('2024-01-25').toISOString(),
+  },
+  {
+    id: '10',
+    name: 'Dried Lentils',
+    description: 'Red lentils for soups and stews',
+    priceKZT: 420,
+    unit: 'kg',
+    stock: 600,
+    moq: 50,
+    supplierId: 'supplier-2',
+    archived: false,
+    createdAt: new Date('2024-01-28').toISOString(),
+    updatedAt: new Date('2024-01-28').toISOString(),
+  },
+  {
+    id: '11',
+    name: 'Tomato Paste',
+    description: 'Concentrated tomato paste 28-30% solids',
+    priceKZT: 650,
+    unit: 'kg',
+    stock: 400,
+    moq: 25,
+    supplierId: 'supplier-1',
+    archived: false,
+    createdAt: new Date('2024-02-01').toISOString(),
+    updatedAt: new Date('2024-02-01').toISOString(),
+  },
+  {
+    id: '12',
+    name: 'Corn Flour',
+    description: 'Fine yellow corn flour',
+    priceKZT: 210,
+    unit: 'kg',
+    stock: 1000,
+    moq: 100,
+    supplierId: 'supplier-1',
+    archived: false,
+    createdAt: new Date('2024-02-03').toISOString(),
+    updatedAt: new Date('2024-02-03').toISOString(),
+  },
+  {
+    id: '13',
+    name: 'Chickpeas',
+    description: 'Dried Kabuli chickpeas',
+    priceKZT: 480,
+    unit: 'kg',
+    stock: 700,
+    moq: 50,
+    supplierId: 'supplier-2',
+    archived: false,
+    createdAt: new Date('2024-02-05').toISOString(),
+    updatedAt: new Date('2024-02-05').toISOString(),
+  },
+  {
+    id: '14',
+    name: 'Basmati Rice',
+    description: 'Long grain aromatic rice from India',
+    priceKZT: 680,
+    unit: 'kg',
+    stock: 500,
+    moq: 50,
+    supplierId: 'supplier-3',
+    archived: false,
+    createdAt: new Date('2024-02-08').toISOString(),
+    updatedAt: new Date('2024-02-08').toISOString(),
+  },
+  {
+    id: '15',
+    name: 'Oat Flakes',
+    description: 'Quick-cooking rolled oats',
+    priceKZT: 350,
+    unit: 'kg',
+    stock: 900,
+    moq: 100,
+    supplierId: 'supplier-2',
+    archived: false,
+    createdAt: new Date('2024-02-10').toISOString(),
+    updatedAt: new Date('2024-02-10').toISOString(),
+  },
+  {
+    id: '16',
+    name: 'Rye Flour',
+    description: 'Whole grain rye flour',
+    priceKZT: 220,
+    unit: 'kg',
+    stock: 650,
+    moq: 100,
+    supplierId: 'supplier-1',
+    archived: false,
+    createdAt: new Date('2024-02-12').toISOString(),
+    updatedAt: new Date('2024-02-12').toISOString(),
+  },
+  {
+    id: '17',
+    name: 'Honey Natural',
+    description: 'Pure wildflower honey',
+    priceKZT: 1800,
+    unit: 'kg',
+    stock: 200,
+    moq: 10,
+    supplierId: 'supplier-3',
+    archived: false,
+    createdAt: new Date('2024-02-15').toISOString(),
+    updatedAt: new Date('2024-02-15').toISOString(),
   },
 ];
 
@@ -152,6 +322,7 @@ async function deleteProduct(id: string): Promise<void> {
 export default function CatalogPage() {
   const { toast } = useToast();
   const queryClient = useQueryClient();
+  const router = useRouter();
   const [user, setUser] = useState<User | null>(null);
   const [search, setSearch] = useState('');
   const [supplier, setSupplier] = useState('');
@@ -172,7 +343,19 @@ export default function CatalogPage() {
     if (stored) {
       setUser(JSON.parse(stored));
     }
+    // Load cart from localStorage
+    const storedCart = localStorage.getItem('cart');
+    if (storedCart) {
+      setCart(JSON.parse(storedCart));
+    }
   }, []);
+
+  // Save cart to localStorage whenever it changes
+  useEffect(() => {
+    if (Object.keys(cart).length > 0) {
+      localStorage.setItem('cart', JSON.stringify(cart));
+    }
+  }, [cart]);
   
   const { data: products, isLoading } = useQuery({
     queryKey: ['catalog', search, supplier],
@@ -264,7 +447,7 @@ export default function CatalogPage() {
         </div>
         <div className="flex gap-2">
           {isConsumer && cartCount > 0 && (
-            <Button className="relative">
+            <Button className="relative" onClick={() => router.push('/dashboard/orders')}>
               <ShoppingCart className="h-4 w-4 mr-2" />
               Cart ({cartCount})
             </Button>

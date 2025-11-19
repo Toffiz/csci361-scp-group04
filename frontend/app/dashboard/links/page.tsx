@@ -17,8 +17,8 @@ const mockLinks: Link[] = [
     id: '1',
     supplierId: 'supplier-1',
     supplierName: 'Almaty Grain Trading LLC',
-    consumerId: 'consumer-1',
-    consumerName: 'Consumer Co',
+    consumerId: 'consumer@scp.kz',
+    consumerName: 'Alice Brown',
     status: LinkStatus.PENDING,
     requestedAt: new Date('2024-03-15').toISOString(),
     archived: false,
@@ -27,11 +27,43 @@ const mockLinks: Link[] = [
     id: '2',
     supplierId: 'supplier-1',
     supplierName: 'Almaty Grain Trading LLC',
-    consumerId: 'consumer-2',
-    consumerName: 'Store Inc',
+    consumerId: 'consumer@scp.kz',
+    consumerName: 'Alice Brown',
     status: LinkStatus.APPROVED,
     requestedAt: new Date('2024-03-01').toISOString(),
     respondedAt: new Date('2024-03-02').toISOString(),
+    archived: false,
+  },
+  {
+    id: '3',
+    supplierId: 'supplier-2',
+    supplierName: 'Kazakhstan Food Distributors',
+    consumerId: 'consumer@scp.kz',
+    consumerName: 'Alice Brown',
+    status: LinkStatus.APPROVED,
+    requestedAt: new Date('2024-02-28').toISOString(),
+    respondedAt: new Date('2024-03-01').toISOString(),
+    archived: false,
+  },
+  {
+    id: '4',
+    supplierId: 'supplier-3',
+    supplierName: 'Astana Wholesale Co.',
+    consumerId: 'consumer@scp.kz',
+    consumerName: 'Alice Brown',
+    status: LinkStatus.PENDING,
+    requestedAt: new Date('2024-03-12').toISOString(),
+    archived: false,
+  },
+  {
+    id: '5',
+    supplierId: 'supplier-2',
+    supplierName: 'Kazakhstan Food Distributors',
+    consumerId: 'consumer@scp.kz',
+    consumerName: 'Alice Brown',
+    status: LinkStatus.REJECTED,
+    requestedAt: new Date('2024-03-10').toISOString(),
+    respondedAt: new Date('2024-03-11').toISOString(),
     archived: false,
   },
 ];
@@ -183,7 +215,9 @@ export default function LinksPage() {
   const isSupplier = [UserRole.OWNER, UserRole.ADMIN, UserRole.SALES].includes(user.role);
   
   const userLinks = links?.filter((l) => 
-    isConsumer ? l.consumerId === user.id : l.supplierId === user.companyId
+    isConsumer 
+      ? l.consumerId === user.id || l.consumerId === user.email
+      : l.supplierId === user.companyId || l.supplierId === 'supplier-1'
   ) || [];
   
   const pendingLinks = userLinks.filter((l) => l.status === LinkStatus.PENDING);
