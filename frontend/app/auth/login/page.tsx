@@ -8,6 +8,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { User, UserRole } from '@/types';
 import Link from 'next/link';
+import { useI18n } from '@/lib/i18n-context';
 
 // Mock users database (in localStorage)
 const getMockUsers = () => {
@@ -28,6 +29,7 @@ const getMockUsers = () => {
 
 export default function LoginPage() {
   const router = useRouter();
+  const { t } = useI18n();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -63,15 +65,15 @@ export default function LoginPage() {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100 p-4">
       <Card className="w-full max-w-md">
         <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl font-bold text-center">Welcome to SCP</CardTitle>
+          <CardTitle className="text-2xl font-bold text-center">{t('auth.title')}</CardTitle>
           <CardDescription className="text-center">
-            Sign in to your account
+            {t('auth.subtitle')}
           </CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleLogin} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="email">{t('auth.email')}</Label>
               <Input
                 id="email"
                 type="email"
@@ -83,7 +85,7 @@ export default function LoginPage() {
             </div>
             
             <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
+              <Label htmlFor="password">{t('auth.password')}</Label>
               <Input
                 id="password"
                 type="password"
@@ -101,13 +103,13 @@ export default function LoginPage() {
             )}
 
             <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white">
-              Sign In
+              {t('auth.login')}
             </Button>
 
             <div className="text-center text-sm text-muted-foreground">
-              Don&apos;t have an account?{' '}
+              {t('auth.noAccount')}{' '}
               <Link href="/auth/register" className="text-primary hover:underline">
-                Register
+                {t('auth.register')}
               </Link>
             </div>
 

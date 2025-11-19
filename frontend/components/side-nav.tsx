@@ -15,11 +15,11 @@ import {
   Settings,
 } from 'lucide-react';
 import { UserRole } from '@/types';
-import { getRolePermissions } from '@/lib/roles';
+import { useI18n } from '@/lib/i18n-context';
 
 interface NavItem {
   href: string;
-  label: string;
+  translationKey: string;
   icon: React.ComponentType<{ className?: string }>;
   roles: UserRole[];
 }
@@ -27,49 +27,49 @@ interface NavItem {
 const navItems: NavItem[] = [
   {
     href: '/dashboard',
-    label: 'Dashboard',
+    translationKey: 'nav.dashboard',
     icon: LayoutDashboard,
     roles: [UserRole.OWNER, UserRole.ADMIN, UserRole.SALES, UserRole.CONSUMER],
   },
   {
     href: '/dashboard/links',
-    label: 'Links',
+    translationKey: 'nav.links',
     icon: Link2,
     roles: [UserRole.OWNER, UserRole.ADMIN, UserRole.CONSUMER],
   },
   {
     href: '/dashboard/catalog',
-    label: 'Catalog',
+    translationKey: 'nav.catalog',
     icon: Package,
     roles: [UserRole.OWNER, UserRole.ADMIN, UserRole.CONSUMER],
   },
   {
     href: '/dashboard/orders',
-    label: 'Orders',
+    translationKey: 'nav.orders',
     icon: ShoppingCart,
     roles: [UserRole.OWNER, UserRole.ADMIN, UserRole.SALES, UserRole.CONSUMER],
   },
   {
     href: '/dashboard/chat',
-    label: 'Chat',
+    translationKey: 'nav.chat',
     icon: MessageSquare,
     roles: [UserRole.OWNER, UserRole.ADMIN, UserRole.SALES, UserRole.CONSUMER],
   },
   {
     href: '/dashboard/complaints',
-    label: 'Complaints',
+    translationKey: 'nav.complaints',
     icon: AlertCircle,
     roles: [UserRole.OWNER, UserRole.ADMIN, UserRole.SALES],
   },
   {
     href: '/dashboard/incidents',
-    label: 'Incidents',
+    translationKey: 'nav.incidents',
     icon: AlertTriangle,
     roles: [UserRole.OWNER, UserRole.ADMIN],
   },
   {
     href: '/dashboard/admin',
-    label: 'Admin',
+    translationKey: 'nav.admin',
     icon: Settings,
     roles: [UserRole.OWNER, UserRole.ADMIN],
   },
@@ -81,6 +81,7 @@ interface SideNavProps {
 
 export function SideNav({ role }: SideNavProps) {
   const pathname = usePathname();
+  const { t } = useI18n();
 
   const visibleItems = navItems.filter((item) => item.roles.includes(role));
 
@@ -101,7 +102,7 @@ export function SideNav({ role }: SideNavProps) {
                 )}
               >
                 <Icon className="h-5 w-5" />
-                {item.label}
+                {t(item.translationKey)}
               </Button>
             </Link>
           );

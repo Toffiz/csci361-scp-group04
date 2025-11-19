@@ -13,6 +13,7 @@ import { Package, Search, ShoppingCart, Store, Plus, Edit, Trash2, Save } from '
 import { useState, useEffect } from 'react';
 import { useToast } from '@/components/ui/use-toast';
 import { useRouter } from 'next/navigation';
+import { useI18n } from '@/lib/i18n-context';
 
 // Mock data
 const mockProducts: Product[] = [
@@ -451,6 +452,7 @@ async function deleteProduct(id: string): Promise<void> {
 }
 
 export default function CatalogPage() {
+  const { t } = useI18n();
   const { toast } = useToast();
   const queryClient = useQueryClient();
   const router = useRouter();
@@ -474,10 +476,11 @@ export default function CatalogPage() {
     if (stored) {
       setUser(JSON.parse(stored));
     }
-    // Initialize products in localStorage if not present
-    const storedProducts = localStorage.getItem('products');
-    if (!storedProducts) {
+    // Force update products with new data (version 2)
+    const productsVersion = localStorage.getItem('productsVersion');
+    if (productsVersion !== '2') {
       localStorage.setItem('products', JSON.stringify(mockProducts));
+      localStorage.setItem('productsVersion', '2');
     }
     // Load cart from localStorage
     const storedCart = localStorage.getItem('cart');
@@ -585,9 +588,9 @@ export default function CatalogPage() {
     <div className="space-y-8">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold">Catalog</h1>
+          <h1 className="text-3xl font-bold">{t('catalog.title')}</h1>
           <p className="text-muted-foreground mt-2">
-            {isConsumer ? 'Search and browse products from suppliers' : 'Manage your product catalog'}
+            {t('catalog.subtitle')}
           </p>
         </div>
         <div className="flex gap-2">

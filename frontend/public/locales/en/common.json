@@ -77,7 +77,60 @@
     "stock": "In stock",
     "minOrder": "Min. order",
     "lowStock": "Low",
-    "loading": "Loading..."
+    "loading": "Loading...",
+    "addToCart": "Add to Cart",
+    "allSuppliers": "All Suppliers",
+    "supplier": "Supplier"
+  },
+  "orders": {
+    "title": "Orders",
+    "subtitle": "Manage orders",
+    "myOrders": "My Orders",
+    "createOrder": "Create Order",
+    "viewCart": "View Cart",
+    "checkout": "Checkout",
+    "totalAmount": "Total Amount",
+    "orderDate": "Order Date",
+    "status": "Status",
+    "items": "Items",
+    "quantity": "Quantity",
+    "price": "Price",
+    "total": "Total",
+    "noOrders": "No orders",
+    "emptyCart": "Cart is empty"
+  },
+  "chat": {
+    "title": "Chat",
+    "subtitle": "Messages with suppliers",
+    "selectThread": "Select a conversation",
+    "typeMessage": "Type a message...",
+    "send": "Send",
+    "noThreads": "No conversations"
+  },
+  "complaints": {
+    "title": "Complaints",
+    "subtitle": "Manage complaints",
+    "create": "Create Complaint",
+    "subject": "Subject",
+    "description": "Description",
+    "status": "Status",
+    "priority": "Priority",
+    "createdAt": "Created At",
+    "noComplaints": "No complaints",
+    "statusOpen": "Open",
+    "statusInProgress": "In Progress",
+    "statusResolved": "Resolved",
+    "statusClosed": "Closed"
+  },
+  "admin": {
+    "title": "Administration",
+    "subtitle": "User management",
+    "users": "Users",
+    "addUser": "Add User",
+    "name": "Name",
+    "email": "Email",
+    "role": "Role",
+    "actions": "Actions"
   },
   "common": {
     "loading": "Loading...",
@@ -86,6 +139,13 @@
     "cancel": "Cancel",
     "delete": "Delete",
     "edit": "Edit",
-    "search": "Search"
+    "search": "Search",
+    "filter": "Filter",
+    "back": "Back",
+    "next": "Next",
+    "submit": "Submit",
+    "create": "Create",
+    "yes": "Yes",
+    "no": "No"
   }
 }

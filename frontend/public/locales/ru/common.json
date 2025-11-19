@@ -1,163 +1,136 @@
-{{
-
-  "app": {  "app": {
-
-    "title": "SCP Платформа",    "name": "Платформа Поставщик-Потребитель",
-
-    "description": "Платформа Поставщик-Потребитель"    "tagline": "Упрощаем взаимодействие бизнеса"
-
-  },  },
-
-  "nav": {  "roles": {
-
-    "dashboard": "Панель",    "owner": "Владелец",
-
-    "links": "Связи",    "admin": "Администратор",
-
-    "catalog": "Каталог",    "sales": "Менеджер по продажам",
-
-    "orders": "Заказы",    "consumer": "Потребитель"
-
-    "chat": "Чат",  },
-
-    "complaints": "Жалобы",  "common": {
-
-    "incidents": "Инциденты",    "save": "Сохранить",
-
-    "admin": "Админ"    "cancel": "Отмена",
-
-  },    "delete": "Удалить",
-
-  "auth": {    "edit": "Редактировать",
-
-    "title": "Добро пожаловать в SCP",    "create": "Создать",
-
-    "subtitle": "Войдите в свой аккаунт",    "search": "Поиск",
-
-    "email": "Email",    "filter": "Фильтр",
-
-    "password": "Пароль",    "export": "Экспорт",
-
-    "login": "Войти",    "back": "Назад",
-
-    "register": "Регистрация",    "next": "Далее",
-
-    "noAccount": "Нет аккаунта?",    "submit": "Отправить",
-
-    "haveAccount": "Уже есть аккаунт?",    "loading": "Загрузка...",
-
-    "registerTitle": "Создать аккаунт",    "noData": "Нет данных",
-
-    "registerSubtitle": "Зарегистрируйтесь для нового аккаунта",    "actions": "Действия",
-
-    "name": "Полное имя",    "status": "Статус",
-
-    "company": "Название компании",    "createdAt": "Создано",
-
-    "role": "Роль"    "updatedAt": "Обновлено",
-
-  },    "archive": "В архив",
-
-  "roles": {    "unarchive": "Из архива",
-
-    "owner": "Владелец",    "archived": "В архиве",
-
-    "admin": "Администратор",    "active": "Активно",
-
-    "sales": "Менеджер по продажам",    "yes": "Да",
-
-    "consumer": "Потребитель"    "no": "Нет",
-
-  },    "confirm": "Подтвердить",
-
-  "dashboard": {    "close": "Закрыть"
-
-    "welcome": "Добро пожаловать",  },
-
-    "quickStart": "Быстрый старт",  "nav": {
-
-    "features": "Основные функции платформы",    "dashboard": "Панель управления",
-
-    "activeLinks": "Активные связи",    "links": "Связи",
-
-    "catalogAccess": "Доступ к каталогу",    "catalog": "Каталог",
-
-    "myOrders": "Мои заказы",    "orders": "Заказы",
-
-    "activeOrders": "Активных заказов",    "chat": "Чат",
-
-    "messages": "Сообщения",    "complaints": "Жалобы",
-
-    "unread": "Непрочитанных",    "incidents": "Инциденты",
-
-    "pendingApproval": "Ожидают одобрения",    "admin": "Администрирование",
-
-    "linkRequests": "Запросов на связь",    "logout": "Выйти"
-
-    "products": "Товары",  },
-
-    "inCatalog": "В каталоге",  "auth": {
-
-    "orders": "Заказы",    "signIn": "Войти",
-
-    "needsProcessing": "Требуют обработки",    "signOut": "Выйти",
-
-    "complaints": "Жалобы",    "selectRole": "Выберите роль",
-
-    "openComplaints": "Открытых жалоб",    "welcome": "Добро пожаловать"
-
-    "chats": "Чаты",  },
-
-    "activeDialogs": "Активных диалогов",  "dashboard": {
-
-    "processing": "На обработке",    "welcome": "Добро пожаловать, {{name}}",
-
-    "assignedToMe": "Назначено мне"    "overview": "Обзор",
-
-  },    "pendingLinks": "Ожидающие связи",
-
-  "links": {    "recentOrders": "Последние заказы",
-
-    "title": "Связи",    "openComplaints": "Открытые жалобы",
-
-    "subtitle": "Управление связями с потребителями",    "activeChats": "Активные чаты",
-
-    "pending": "Ожидают одобрения",    "lowStock": "Низкий остаток",
-
-    "active": "Активные связи",    "pendingApprovals": "На утверждении"
-
-    "requested": "Запрошено",  },
-
-    "approve": "Одобрить",  "errors": {
-
-    "decline": "Отклонить",    "generic": "Произошла ошибка",
-
-    "noPending": "Нет ожидающих запросов",    "notFound": "Не найдено",
-
-    "noActive": "Нет активных связей",    "unauthorized": "Нет доступа",
-
-    "since": "С",    "forbidden": "Запрещено",
-
-    "activeStatus": "Активна"    "validation": "Ошибка валидации",
-
-  },    "network": "Ошибка сети"
-
-  "catalog": {  },
-
-    "title": "Каталог",  "success": {
-
-    "subtitle": "Доступные товары от поставщиков",    "saved": "Сохранено успешно",
-
-    "search": "Поиск товаров...",    "created": "Создано успешно",
-
-    "stock": "В наличии",    "updated": "Обновлено успешно",
-
-    "minOrder": "Мин. заказ",    "deleted": "Удалено успешно"
-
-    "lowStock": "Мало",  }
-
-    "loading": "Загрузка..."}
-
+{
+  "app": {
+    "title": "SCP Платформа",
+    "description": "Платформа Поставщик-Потребитель"
+  },
+  "nav": {
+    "dashboard": "Панель",
+    "links": "Связи",
+    "catalog": "Каталог",
+    "orders": "Заказы",
+    "chat": "Чат",
+    "complaints": "Жалобы",
+    "incidents": "Инциденты",
+    "admin": "Админ"
+  },
+  "auth": {
+    "title": "Добро пожаловать в SCP",
+    "subtitle": "Войдите в свой аккаунт",
+    "email": "Email",
+    "password": "Пароль",
+    "login": "Войти",
+    "register": "Регистрация",
+    "noAccount": "Нет аккаунта?",
+    "haveAccount": "Уже есть аккаунт?",
+    "registerTitle": "Создать аккаунт",
+    "registerSubtitle": "Зарегистрируйтесь для нового аккаунта",
+    "name": "Полное имя",
+    "company": "Название компании",
+    "role": "Роль"
+  },
+  "roles": {
+    "owner": "Владелец",
+    "admin": "Администратор",
+    "sales": "Менеджер по продажам",
+    "consumer": "Потребитель"
+  },
+  "dashboard": {
+    "welcome": "Добро пожаловать",
+    "quickStart": "Быстрый старт",
+    "features": "Основные функции платформы",
+    "activeLinks": "Активные связи",
+    "catalogAccess": "Доступ к каталогу",
+    "myOrders": "Мои заказы",
+    "activeOrders": "Активных заказов",
+    "messages": "Сообщения",
+    "unread": "Непрочитанных",
+    "pendingApproval": "Ожидают одобрения",
+    "linkRequests": "Запросов на связь",
+    "products": "Товары",
+    "inCatalog": "В каталоге",
+    "orders": "Заказы",
+    "needsProcessing": "Требуют обработки",
+    "complaints": "Жалобы",
+    "openComplaints": "Открытых жалоб",
+    "chats": "Чаты",
+    "activeDialogs": "Активных диалогов",
+    "processing": "На обработке",
+    "assignedToMe": "Назначено мне"
+  },
+  "links": {
+    "title": "Связи",
+    "subtitle": "Управление связями с потребителями",
+    "pending": "Ожидают одобрения",
+    "active": "Активные связи",
+    "requested": "Запрошено",
+    "approve": "Одобрить",
+    "decline": "Отклонить",
+    "noPending": "Нет ожидающих запросов",
+    "noActive": "Нет активных связей",
+    "since": "С",
+    "activeStatus": "Активна"
+  },
+  "catalog": {
+    "title": "Каталог",
+    "subtitle": "Доступные товары от поставщиков",
+    "search": "Поиск товаров...",
+    "stock": "В наличии",
+    "minOrder": "Мин. заказ",
+    "lowStock": "Мало",
+    "loading": "Загрузка...",
+    "addToCart": "В корзину",
+    "allSuppliers": "Все поставщики",
+    "supplier": "Поставщик"
+  },
+  "orders": {
+    "title": "Заказы",
+    "subtitle": "Управление заказами",
+    "myOrders": "Мои заказы",
+    "createOrder": "Создать заказ",
+    "viewCart": "Корзина",
+    "checkout": "Оформить заказ",
+    "totalAmount": "Общая сумма",
+    "orderDate": "Дата заказа",
+    "status": "Статус",
+    "items": "Товары",
+    "quantity": "Количество",
+    "price": "Цена",
+    "total": "Итого",
+    "noOrders": "Нет заказов",
+    "emptyCart": "Корзина пуста"
+  },
+  "chat": {
+    "title": "Чат",
+    "subtitle": "Сообщения с поставщиками",
+    "selectThread": "Выберите диалог",
+    "typeMessage": "Введите сообщение...",
+    "send": "Отправить",
+    "noThreads": "Нет диалогов"
+  },
+  "complaints": {
+    "title": "Жалобы",
+    "subtitle": "Управление жалобами",
+    "create": "Создать жалобу",
+    "subject": "Тема",
+    "description": "Описание",
+    "status": "Статус",
+    "priority": "Приоритет",
+    "createdAt": "Создано",
+    "noComplaints": "Нет жалоб",
+    "statusOpen": "Открыта",
+    "statusInProgress": "В обработке",
+    "statusResolved": "Решена",
+    "statusClosed": "Закрыта"
+  },
+  "admin": {
+    "title": "Администрирование",
+    "subtitle": "Управление пользователями",
+    "users": "Пользователи",
+    "addUser": "Добавить пользователя",
+    "name": "Имя",
+    "email": "Email",
+    "role": "Роль",
+    "actions": "Действия"
   },
   "common": {
     "loading": "Загрузка...",
@@ -166,6 +139,13 @@
     "cancel": "Отменить",
     "delete": "Удалить",
     "edit": "Редактировать",
-    "search": "Поиск"
+    "search": "Поиск",
+    "filter": "Фильтр",
+    "back": "Назад",
+    "next": "Далее",
+    "submit": "Отправить",
+    "create": "Создать",
+    "yes": "Да",
+    "no": "Нет"
   }
 }

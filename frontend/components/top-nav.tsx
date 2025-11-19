@@ -6,6 +6,7 @@ import { LocaleSwitcher } from './locale-switcher';
 import { Button } from './ui/button';
 import { LogOut } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import { useI18n } from '@/lib/i18n-context';
 
 interface TopNavProps {
   user: User;
@@ -13,6 +14,7 @@ interface TopNavProps {
 
 export function TopNav({ user }: TopNavProps) {
   const router = useRouter();
+  const { t } = useI18n();
 
   const handleLogout = () => {
     localStorage.removeItem('session');
@@ -23,7 +25,7 @@ export function TopNav({ user }: TopNavProps) {
     <div className="border-b bg-card sticky top-0 z-10">
       <div className="flex items-center justify-between h-16 px-6">
         <div className="flex items-center gap-4">
-          <h1 className="text-xl font-bold">SCP Platform</h1>
+          <h1 className="text-xl font-bold">{t('app.title')}</h1>
           <RoleBadge role={user.role} />
         </div>
         
@@ -37,7 +39,7 @@ export function TopNav({ user }: TopNavProps) {
           
           <LocaleSwitcher />
           
-          <Button variant="ghost" size="icon" onClick={handleLogout}>
+          <Button variant="ghost" size="icon" onClick={handleLogout} title={t('common.logout')}>
             <LogOut className="h-5 w-5" />
           </Button>
         </div>

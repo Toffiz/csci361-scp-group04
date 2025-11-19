@@ -76,12 +76,12 @@ const mockThreads: ChatThread[] = [
   },
   {
     id: 'thread-2',
-    supplierId: 'supplier-1',
-    supplierName: 'Almaty Grain Trading LLC',
+    supplierId: 'supplier-2',
+    supplierName: 'Kazakhstan Food Distributors',
     consumerId: 'consumer2@scp.kz',
     consumerName: 'John Smith',
-    assignedSalesId: 'admin@scp.kz',
-    assignedSalesName: 'Jane Smith',
+    assignedSalesId: 'sales2@scp.kz',
+    assignedSalesName: 'Sarah Lee',
     unreadCount: 1,
     escalated: false,
     createdAt: new Date('2024-03-12').toISOString(),
@@ -102,9 +102,9 @@ const mockThreads: ChatThread[] = [
       {
         id: 'msg-6',
         threadId: 'thread-2',
-        senderId: 'admin@scp.kz',
-        senderName: 'Jane Smith',
-        senderRole: UserRole.ADMIN,
+        senderId: 'sales2@scp.kz',
+        senderName: 'Sarah Lee',
+        senderRole: UserRole.SALES,
         type: MessageType.TEXT,
         content: 'Yes! We offer 5% discount for orders above 50L and 10% for orders above 100L.',
         read: true,
@@ -116,13 +116,15 @@ const mockThreads: ChatThread[] = [
 
 async function fetchThreads(): Promise<ChatThread[]> {
   await new Promise((resolve) => setTimeout(resolve, 300));
-  const stored = localStorage.getItem('chatThreads');
-  if (!stored) {
-    // Initialize with mock data
+  // Force update with new chat data (version 2)
+  const chatVersion = localStorage.getItem('chatVersion');
+  if (chatVersion !== '2') {
     localStorage.setItem('chatThreads', JSON.stringify(mockThreads));
+    localStorage.setItem('chatVersion', '2');
     return mockThreads;
   }
-  return JSON.parse(stored);
+  const stored = localStorage.getItem('chatThreads');
+  return stored ? JSON.parse(stored) : mockThreads;
 }
 
 async function sendMessage(threadId: string, content: string, sender: User): Promise<Message> {
