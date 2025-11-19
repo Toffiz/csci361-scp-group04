@@ -8,6 +8,7 @@ import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { MessageSquare, Send, User as UserIcon } from 'lucide-react';
 import { Message, Thread, User, UserRole, MessageType } from '@/types';
+import { useI18n } from '@/lib/i18n-context';
 
 interface ChatThread extends Thread {
   messages: Message[];
@@ -155,6 +156,7 @@ async function sendMessage(threadId: string, content: string, sender: User): Pro
 }
 
 export default function ChatPage() {
+  const { t } = useI18n();
   const queryClient = useQueryClient();
   const [user, setUser] = useState<User | null>(null);
   const [selectedThread, setSelectedThread] = useState<string | null>(null);
@@ -213,9 +215,9 @@ export default function ChatPage() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-3xl font-bold">Chat</h1>
+        <h1 className="text-3xl font-bold">{t('chat.title')}</h1>
         <p className="text-muted-foreground mt-2">
-          Communication with partners
+          {t('chat.communicationWithPartners')}
         </p>
       </div>
 
@@ -223,13 +225,13 @@ export default function ChatPage() {
         {/* Thread List */}
         <Card className="md:col-span-1">
           <CardHeader>
-            <CardTitle className="text-lg">Conversations</CardTitle>
+            <CardTitle className="text-lg">{t('chat.conversations')}</CardTitle>
           </CardHeader>
           <CardContent className="p-0">
             <div className="divide-y">
               {userThreads.length === 0 && (
                 <div className="p-4 text-center text-muted-foreground">
-                  No conversations yet
+                  {t('chat.noConversationsYet')}
                 </div>
               )}
               {userThreads.map((thread) => (
@@ -271,7 +273,7 @@ export default function ChatPage() {
               <div className="text-center">
                 <MessageSquare className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
                 <p className="text-muted-foreground">
-                  Select a conversation to start chatting
+                  {t('chat.selectConversation')}
                 </p>
               </div>
             </CardContent>
@@ -283,7 +285,7 @@ export default function ChatPage() {
                     {isConsumer ? activeThread.supplierName : activeThread.consumerName}
                   </CardTitle>
                   {activeThread.escalated && (
-                    <Badge variant="destructive">Escalated</Badge>
+                    <Badge variant="destructive">{t('chat.escalated')}</Badge>
                   )}
                 </div>
               </CardHeader>

@@ -10,6 +10,7 @@ import { Badge } from '@/components/ui/badge';
 import { AlertCircle, Plus, X } from 'lucide-react';
 import { Complaint, ComplaintStatus, CreateComplaintDto, User, UserRole } from '@/types';
 import { formatDate } from '@/lib/date';
+import { useI18n } from '@/lib/i18n-context';
 
 const mockComplaints: Complaint[] = [
   {
@@ -87,6 +88,7 @@ async function updateComplaintStatus(id: string, status: ComplaintStatus): Promi
 }
 
 export default function ComplaintsPage() {
+  const { t } = useI18n();
   const [showCreateForm, setShowCreateForm] = useState(false);
   const [orderId, setOrderId] = useState('');
   const [subject, setSubject] = useState('');
@@ -175,17 +177,17 @@ export default function ComplaintsPage() {
     <div className="space-y-8">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold">Complaints & Issues</h1>
+          <h1 className="text-3xl font-bold">{t('complaints.title')}</h1>
           <p className="text-muted-foreground mt-2">
             {isConsumer 
-              ? 'Report and track issues with your orders'
-              : 'Manage customer complaints and resolve issues'}
+              ? t('complaints.subtitleConsumer')
+              : t('complaints.subtitleSupplier')}
           </p>
         </div>
         {isConsumer && (
           <Button onClick={() => setShowCreateForm(!showCreateForm)}>
             {showCreateForm ? <X className="mr-2 h-4 w-4" /> : <Plus className="mr-2 h-4 w-4" />}
-            {showCreateForm ? 'Cancel' : 'Report Issue'}
+            {showCreateForm ? t('complaints.cancel') : t('complaints.reportIssue')}
           </Button>
         )}
       </div>
@@ -194,12 +196,12 @@ export default function ComplaintsPage() {
       {showCreateForm && isConsumer && (
         <Card>
           <CardHeader>
-            <CardTitle>Report a Complaint</CardTitle>
+            <CardTitle>{t('complaints.reportComplaint')}</CardTitle>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleCreateComplaint} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="orderId">Order ID</Label>
+                <Label htmlFor="orderId">{t('complaints.orderId')}</Label>
                 <Input
                   id="orderId"
                   value={orderId}
@@ -209,28 +211,28 @@ export default function ComplaintsPage() {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="subject">Subject</Label>
+                <Label htmlFor="subject">{t('complaints.subject')}</Label>
                 <Input
                   id="subject"
                   value={subject}
                   onChange={(e) => setSubject(e.target.value)}
-                  placeholder="Brief description of the issue"
+                  placeholder={t('complaints.briefDescription')}
                   required
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="description">Description</Label>
+                <Label htmlFor="description">{t('complaints.description')}</Label>
                 <textarea
                   id="description"
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
-                  placeholder="Provide detailed information about the issue..."
+                  placeholder={t('complaints.detailedDescription')}
                   required
                   className="w-full min-h-[100px] rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                 />
               </div>
               <Button type="submit" disabled={createMutation.isPending}>
-                {createMutation.isPending ? 'Submitting...' : 'Submit Complaint'}
+                {createMutation.isPending ? t('complaints.submitting') : t('complaints.submitComplaint')}
               </Button>
             </form>
           </CardContent>
@@ -239,13 +241,13 @@ export default function ComplaintsPage() {
 
       {/* Open Complaints */}
       <div>
-        <h2 className="text-xl font-semibold mb-4">Open Issues ({openComplaints.length})</h2>
+        <h2 className="text-xl font-semibold mb-4">{t('complaints.openIssues')} ({openComplaints.length})</h2>
         {openComplaints.length === 0 ? (
           <Card>
             <CardContent className="flex flex-col items-center justify-center py-16">
               <AlertCircle className="h-16 w-16 text-muted-foreground mb-4" />
               <p className="text-muted-foreground text-center">
-                No open complaints
+                {t('complaints.noOpenComplaints')}
               </p>
             </CardContent>
           </Card>

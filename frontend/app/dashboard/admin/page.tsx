@@ -10,6 +10,7 @@ import { Badge } from '@/components/ui/badge';
 import { Settings, Plus, UserPlus, Trash2 } from 'lucide-react';
 import { User, UserRole } from '@/types';
 import { useToast } from '@/components/ui/use-toast';
+import { useI18n } from '@/lib/i18n-context';
 
 interface CompanyUser {
   id: string;
@@ -94,6 +95,7 @@ async function removeUser(email: string) {
 }
 
 export default function AdminPage() {
+  const { t } = useI18n();
   const { toast } = useToast();
   const queryClient = useQueryClient();
   const [user, setUser] = useState<User | null>(null);
@@ -159,15 +161,15 @@ export default function AdminPage() {
     <div className="space-y-8">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold">Administration</h1>
+          <h1 className="text-3xl font-bold">{t('admin.title')}</h1>
           <p className="text-muted-foreground mt-2">
-            Manage company users and settings
+            {t('admin.manageCompanyUsers')}
           </p>
         </div>
         {canManageUsers && (
           <Button onClick={() => setShowAddUser(!showAddUser)}>
             <UserPlus className="h-4 w-4 mr-2" />
-            Add User
+            {t('admin.addUser')}
           </Button>
         )}
       </div>
@@ -175,16 +177,16 @@ export default function AdminPage() {
       {showAddUser && canManageUsers && (
         <Card>
           <CardHeader>
-            <CardTitle>Add New User</CardTitle>
+            <CardTitle>{t('admin.addNewUser')}</CardTitle>
             <CardDescription>
-              Add a manager or sales person to your team
+              {t('admin.addManagerOrSales')}
             </CardDescription>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
               <div className="grid md:grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label htmlFor="name">Full Name</Label>
+                  <Label htmlFor="name">{t('admin.fullName')}</Label>
                   <Input
                     id="name"
                     value={newUser.name}
@@ -193,7 +195,7 @@ export default function AdminPage() {
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="email">Email</Label>
+                  <Label htmlFor="email">{t('admin.email')}</Label>
                   <Input
                     id="email"
                     type="email"
@@ -206,19 +208,19 @@ export default function AdminPage() {
               
               <div className="grid md:grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label htmlFor="role">Role</Label>
+                  <Label htmlFor="role">{t('admin.role')}</Label>
                   <select
                     id="role"
                     value={newUser.role}
                     onChange={(e) => setNewUser({ ...newUser, role: e.target.value as UserRole })}
                     className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                   >
-                    <option value={UserRole.ADMIN}>Manager (Admin)</option>
-                    <option value={UserRole.SALES}>Sales Person</option>
+                    <option value={UserRole.ADMIN}>{t('admin.managerAdmin')}</option>
+                    <option value={UserRole.SALES}>{t('admin.salesPerson')}</option>
                   </select>
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="password">Password</Label>
+                  <Label htmlFor="password">{t('admin.password')}</Label>
                   <Input
                     id="password"
                     type="password"
@@ -241,7 +243,7 @@ export default function AdminPage() {
                   }
                 >
                   <Plus className="h-4 w-4 mr-2" />
-                  Add User
+                  {t('admin.addUser')}
                 </Button>
                 <Button
                   variant="outline"
@@ -250,7 +252,7 @@ export default function AdminPage() {
                     setNewUser({ name: '', email: '', role: UserRole.SALES, password: '' });
                   }}
                 >
-                  Cancel
+                  {t('common.cancel')}
                 </Button>
               </div>
             </div>
@@ -261,9 +263,9 @@ export default function AdminPage() {
       <div className="grid gap-6">
         <Card>
           <CardHeader>
-            <CardTitle>Team Members</CardTitle>
+            <CardTitle>{t('admin.teamMembers')}</CardTitle>
             <CardDescription>
-              {companyUsers?.length || 0} users in your organization
+              {companyUsers?.length || 0} {t('admin.usersInOrganization')}
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -321,23 +323,23 @@ export default function AdminPage() {
 
         <Card>
           <CardHeader>
-            <CardTitle>Company Settings</CardTitle>
+            <CardTitle>{t('admin.companySettings')}</CardTitle>
             <CardDescription>
-              Manage your company profile and preferences
+              {t('admin.manageCompanyProfile')}
             </CardDescription>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
               <div className="space-y-2">
-                <Label>Company Name</Label>
+                <Label>{t('admin.companyName')}</Label>
                 <Input value={user.companyName} disabled />
               </div>
               <div className="space-y-2">
-                <Label>Company ID</Label>
+                <Label>{t('admin.companyId')}</Label>
                 <Input value={user.companyId} disabled />
               </div>
               <p className="text-sm text-muted-foreground">
-                Contact support to update company information
+                {t('admin.contactSupport')}
               </p>
             </div>
           </CardContent>
